@@ -1,7 +1,5 @@
 import openpyxl
 
-import openpyxl
-
 path = './第二批车辆投放及商家入驻情况.xlsx'
 wb = openpyxl.load_workbook(path)
 # 获取所有工作表名
@@ -10,11 +8,11 @@ names = wb.sheetnames
 sheet = wb[names[0]]
 
 SN = []
-index = 18010124000
+index = 18010259000
 min_row = 3
 for one_column_data in sheet.iter_rows(min_row=min_row):
     A = one_column_data[0]
-    if isinstance(A.value, int):
+    if isinstance(A.value, int) | isinstance(A.value, str):
         A1 = str(A.value)[-3:]
         # print(A1)
         index += 1000
@@ -23,7 +21,7 @@ for one_column_data in sheet.iter_rows(min_row=min_row):
         sheet.cell(row=min_row, column=4, value=item)
         min_row += 1
     else:
-        print("==")
+        print("==出错了...")
 
 wb.save(path)
 
