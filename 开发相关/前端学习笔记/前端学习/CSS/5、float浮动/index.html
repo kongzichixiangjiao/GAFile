@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>float浮动</title>
+		<style type="text/css">
+			.container {
+				width: 700px;
+				height: 300px;
+				border: 2px solid #333;
+			}
+
+			.container img {
+				float: left;
+			}
+
+			/* 第一种清除浮动的方法 */
+			/* .clear {
+				clear:both;
+			} */ /* 后面需要清除浮动的标签添加 */
+
+			/* 清除浮动的第三种方法 */
+			.clearfix:after {
+				content: '.';
+				height: 0;
+				display: block;
+				visibility: hidden;
+				clear: both;
+			}
+
+			.container1 {
+				width: 500px height: 500px;
+				border: 2px solid #333333;
+				/* overflow: hidden; */
+				/* 父标签添加。第二种清除浮动的方法*/
+				zoom: 1;
+				/* 清除浮动的第二、三种方法 适配低版本IE*/
+			}
+
+			.box01 {
+				width: 100px;
+				height: 100px;
+				background: blue;
+				color: #fff;
+				float: left;
+			}
+
+			.box02 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				color: #fff;
+				float: left;
+			}
+
+			.box03 {
+				width: 100px;
+				height: 100px;
+				background: yellow;
+				color: #fff;
+				float: left;
+			}
+
+			.box04 {
+				width: 500px;
+				height: 200px;
+				background: greenyellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>行内元素</h1>
+		<ul>
+			<li>与其他元素同行显示</li>
+			<li>不可以设置宽、高</li>
+			<li>宽高就是文字或图片的宽高</li>
+			<li>span、a、b、i、u、em...</li>
+		</ul>
+		<div style="width: 300px; height: 200px; background-color: #999999;">
+			块内元素1
+		</div>
+		<div style="width: 300px; height: 200px; background-color: #999999;">
+			块内元素2
+		</div>
+		<span>行内元素1</span>
+		<span>行内元素2</span>
+		<br><br>
+		<hr>
+
+		<h1>Float浮动的基本知识</h1>
+		<ul>
+			<li>会使元素向左或向右移动，只能左右，不能上下</li>
+			<li>浮动元素碰到包含框或另一个浮动框，浮动停止</li>
+			<li>浮动元素之后的元素将围绕它，之前的不受影响</li>
+			<li>浮动元素会脱离标准流</li>
+		</ul>
+
+		<p><b>示例</b></p>
+		<div class="container">
+			<p>img浮动，这段话在浮动之前，不受影响。</p>
+			<img src="../assets/001.png">
+			<p>img浮动，这段话在浮动之后，受影响。
+				img浮动，这段话在浮动之后，受影响。img浮动，这段话在浮动之后，受影响。
+				img浮动，这段话在浮动之后，受影响。img浮动，这段话在浮动之后，受影响。
+				img浮动，这段话在浮动之后，受影响。img浮动，这段话在浮动之后，受影响。
+				img浮动，这段话在浮动之后，受影响。img浮动，这段话在浮动之后，受影响。</p>
+		</div>
+		<br>
+		<hr>
+		<h1>清除浮动</h1>
+		<ul>
+			<li>/* 第一种清除浮动的方法 */
+				/* .clear {
+				clear:both;
+				} */ /* 后面需要清除浮动的标签添加 */</li>
+			<li>/* overflow: hidden; */ /* 父标签添加。第二种清除浮动的方法*/</li>
+			<li>/* 清除浮动的第三种方法 */
+				.clearfix:after {
+				content: '.';
+				height: 0;
+				display: block;
+				visibility: hidden;
+				clear: both;
+				} zoom: 1;
+				/* 清除浮动的第三种方法 适配低版本IE*/</li>
+		</ul>
+		<p><b>示例</b></p>
+		<div class="container1 clearfix">
+			<div class="box01">
+				1111
+			</div>
+			<div class="box02">
+				2222
+			</div>
+			<div class="box03">
+				3333
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="box04">
+			4444不清除浮动会环绕1111 2222 3333
+		</div>
+		
+		<h1>clear:none|left|right|both</h1>
+		<p>clear只会清除本身的浮动，不会影响相邻元素</p>
+	</body>
+</html>

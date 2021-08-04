@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" href="slider.css">
+		<style type="text/css">
+			.transition {
+				-o-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-webkit-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+
+			.fadeOut {
+				opacity: 0 !important;
+				visibility: hidden !important;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- <div id="focus-slider" class="slider slider-fade"> -->
+		<div id="focus-slider" class="slider">
+			<div class="slider-container">
+				<div class="slider-item">
+					<a href="#" target="_blank"><img src="../focus-slider/1.png"alt=""></a>
+				</div>
+				<div class="slider-item">
+					<a href="#" target="_blank"><img src="../focus-slider/2.png" alt=""></a>
+				</div>
+				<div class="slider-item">
+					<a href="#" target="_blank"><img src="../focus-slider/3.png" alt=""></a>
+				</div>
+				<div class="slider-item">
+					<a href="#" target="_blank"><img src="../focus-slider/4.png" alt=""></a>
+				</div>
+			</div>
+			<ol class="slider-indicator-wrap">
+				<li class="slider-indicator fl"></li>
+				<li class="slider-indicator fl slider-indicator-active"></li>
+				<li class="slider-indicator fl"></li>
+				<li class="slider-indicator fl"></li>
+			</ol>
+			<a href="javascript:;" class="slider-control slider-control-left">&lt;
+				<a href="javascript:;" class="slider-control slider-control-right">&gt;</a>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 如果cdn加载jquery失败 加载本地js
+			window.jQuery || document.write('<script type="text/javascript" src="../../jQuery/jquery-3.5.1/jquery-3.5.1.js">')
+		</script>
+		<script src="../../js/transition.js"></script>
+		<script src="../../js/showHide.js"></script>
+
+		<script src="../move.js"></script>
+		<script src="./slider.js"></script>
+		<script>
+			var $focusSlider = $('#focus-slider');
+
+			$focusSlider.slider({
+				css3: true,
+				js: false,
+				animation: 'slide',
+				// animation: 'fade',
+				activeIndex: 0,
+				interval: 1800
+			})
+
+			// $focusSlider.slider("show");
+
+			$focusSlider.on('slider-show slider-shown slider-hide slider-hidden', function(e, i, elem) {
+				console.log(i);
+			});
+		</script>
+	</body>
+</html>

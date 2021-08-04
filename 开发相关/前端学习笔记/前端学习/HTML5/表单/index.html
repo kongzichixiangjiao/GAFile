@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5表单</title>
+		<style type="text/css">
+			/* 使用伪类清楚取消按钮 */
+			/* PC端适用,手机端不适用 */
+			input[type=search]::-webkit-search-cancel-button {
+				-webkit-appearance: none;
+				height: 15px;
+				width: 15px;
+				background-color: #008000;
+			}
+
+			/* 隐藏number表单后面的上下箭头 */
+			/* input[type=number]::-webkit-inner-spin-button,
+			input[type=number]::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			} */
+		</style>
+		<style type="text/css">
+			.container {
+				max-width: 400px;
+				margin: 20px auto;
+			}
+
+			.container input,
+			select,
+			textarea {
+				width: 240px;
+				margin: 10px 0;
+				border: 1px solid #999999;
+				padding: 0.5em 1em;
+			}
+
+			.container label {
+				color: #999999;
+				margin-left: 10px;
+			}
+
+			/* 必填框设置 */
+			.container input:required,
+			.container textarea:required {
+				border-right: 3px solid #aa0088;
+			}
+
+			/* 选填框设置 */
+			.container input:optional,
+			.container select:optional {
+				border-right: 3px solid #999;
+			}
+
+			/* 追加文字 */
+			.container input:required+label::after {
+				content: "（必填）";
+			}
+
+			.container input:required+label::after {
+				content: "（选填）";
+			}
+
+			/* 聚焦时候边框颜色取消 */
+			.container input:focus,
+			.container select:focus,
+			.container textarea:focus {
+				outline: 0;
+			}
+
+			/* 聚焦时候边框投影 */
+			.container input:required:focus,
+			.container textarea:required:focus {
+				box-shadow: 0 0 3px 1px #AA0088;
+			}
+
+			/* 聚焦时候边框投影 */
+			.container input:optional:focus,
+			.container textarea:optional:focus {
+				box-shadow: 0 0 3px 1px #999;
+			}
+
+			.container input[type="submit"] {
+				background-color: #cc00aa;
+				border: 2px solid #a08;
+				padding: 10px 0;
+				color: #fff;
+			}
+
+			.container input[type="submit"]:hover {
+				background-color: #a08;
+			}
+		</style>
+		<style type="text/css">
+			.container_email {
+				margin: 100px;
+				position: relative;
+			}
+
+			.container_email>input {
+				border: 1px solid #999;
+				outline: 0;
+				width: 140px;
+				height: 30px;
+				line-height: 30;
+				text-indent: 36px;
+				transition: all .3s;
+			}
+
+			.container_email>span.title {
+				position: absolute;
+				height: 30px;
+				line-height: 30px;
+				left: 2px;
+				top: 2px;
+				transition: all .3s;
+			}
+
+			.container_email>input:focus,
+			.container_email>input:hover {
+				text-indent: 2px;
+			}
+
+			.container_email>input:focus+span.title,
+			.container_email>input:hover+span.title {
+				transform: translateX(-120%);
+			}
+
+			.container_email>input:valid~label::after {
+				content: "正确✅";
+			}
+
+			.container_email>input:invalid~label::after {
+				content: "❌";
+			}
+		</style>
+		<style type="text/css">
+			.container_test>.onelist {
+				margin: 10px 0 5px 12px;
+			}
+
+			.container_test>.onelist label {
+				width: 80px;
+				display: inline-block;
+			}
+
+			.container_test>.onelist input,
+			.onelist select {
+				height: 30px;
+				line-height: 25px;
+				width: 220px;
+				border-radius: 3px;
+				border: 1px solid #e2e2e2;
+			}
+
+			.container_test>.onelist input[type="submit"] {
+				width: 150px;
+				height: 30px;
+				line-height: 30px;
+			}
+
+			.container_test input:required,
+			.container_test select:required {
+				background: url(../自定义视频播放器/videoimages/crl_bg.png) no-repeat center;
+				background-size: 10px;
+			}
+
+			.container_test input:required:valid,
+			.container_test select:required:valid {
+				background: url(../自定义视频播放器/musicimage/volume.png) no-repeat center;
+				background-size: 10px;
+				box-shadow: 0 0 5px green;
+				border-color: green;
+			}
+
+			.container_test input:focus:invalid {
+				background: url(../自定义视频播放器/musicimage/volume.png) no-repeat center;
+				background-size: 10px;
+				box-shadow: 0 0 5px red;
+				border-color: red;
+				outline: red solid 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- form[action=""][method="post"] -->
+		<!-- autocomplete 联想开关	 -->
+		<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+			<!-- 有type=file时候添加 enctype="multipart/form-data" -->
+			<input type="file">
+			<label for="">用户名</label>
+			<!-- required 必填  autofocus 自动对焦 -->
+			<input type="text" id="username" name="user" placeholder="请输入用户名" required="" autofocus="autofocus" oninput="checkUsername(this)">
+			<input type="text" name="gonghao" placeholder="请输入工号" pattern="^\d{5}[a-zA-Z]$" required="required" oninput="checkGonghao(this)">
+			<input type="text" list="tips">
+
+			<!-- 下来选框 -->
+			<dataList id="tips">
+				<option value="hjn">描述文字</option>
+				<option value="hjn1">描述文字</option>
+				<option value="hjn2">描述文字</option>
+				<option value="hjn3">描述文字</option>
+			</dataList>
+
+			<!-- 复选框 -->
+			<lable for="man">男</lable>
+			<input type="radio" name="sex" id="man" value="男" required="required" />
+			<lable for="woman">女</lable>
+			<input type="radio" name="sex" id="woman" value="女" required="required" />
+
+			<input type="search" id="search" value="">
+			<input type="email" id="email1" value="email@qq.com">
+			<input type="number" id="numbers" max="50" min="10" step="3" value="" oninput="checkLength(this,5)">
+
+			<!-- formnovalidate 直接提交到后台 -->
+			<input type="submit" formnovalidate="" value="提交到后台">
+			<input type="submit" value="必填提交">
+		</form>
+
+
+		<div class="container">
+			<form action="#">
+				<input type="name" required="" /><label>名称</label>
+				<input type="email2" required="" /><label>邮箱</label>
+				<input type="tel"><label>手机</label>
+				<input type="url"><label>网址</label>
+				<select name="#" id="">
+					<option value="1">非必填选项一</option>
+					<option value="2">非必填选项二</option>
+					<option value="3">非必填选项三</option>
+					<option value="4">非必填选项四</option>
+				</select>
+
+				<textarea rows="10" cols="30" name="#" placeholder="留言(必填)" required=""></textarea>
+				<input type="submit" value="提交表单">
+			</form>
+		</div>
+
+		<div class="container_email">
+			<input type="email" id="email" required="required" placeholder="输入邮箱">
+			<span class="title">邮箱</span>
+			<label for="email"></label>
+		</div>
+
+		<div class="container_test">
+			<form action="" class="myform" method="post">
+				<div class="onelist">
+					<label for="UserName">手机号</label>
+					<input name="UserName" id="UserName" type="text" placeholder="请输入手机号码" pattern="^1[0-9]{10}$" required oninput="this.setCustomValidity('')"
+					 oninvalid="this.setCustomValidity('请输入正确手机号码!')">
+				</div>
+				<div class="onelist">
+					<label for="Password">密码</label>
+					<input name="Password" id="Password" type="password" placeholder="请输入密码" pattern="^[a-zA-Z0-9]\w{5,19}$" required
+					 oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('请输入正确密码!')">
+				</div>
+				<div class="onelist">
+					<label for="Repassword">确认密码</label>
+					<input name="Repassword" id="Repassword" type="password" placeholder="确认密码" required onchange="checkPassword()">
+				</div>
+				<div class="onelist">
+					<label for="Repassword">了解方式</label>
+					<select name="know" required="required">
+						<option value="">==请选择==</option>
+						<option value="1">搜索引擎</option>
+						<option value="2">朋友圈</option>
+						<option value="3">朋友推广</option>
+						<option value="4">广告投放</option>
+					</select>
+				</div>
+				<div class="onelist">
+					<input id="submit" type="submit" value="提交" />
+				</div>
+			</form>
+		</div>
+
+		<script type="text/javascript">
+			var userInput = document.getElementById('username');
+			console.log(userInput === username); // true 
+			console.log(userInput.validity);
+			console.log(username.validity); // 使用id直接输出validity
+			/*
+			badInput: false
+			customError: false
+			patternMismatch: false  -> pattern 需要设置value值
+			rangeOverflow: false  -> max
+			rangeUnderflow: false  -> min 
+			stepMismatch: false  -> step
+			tooLong: false  -> maxlength
+			tooShort: false  -> minlength
+			typeMismatch: false  -> type 如果type是email、url、tel，输入的内容不是email、url、tel，typeMismatch==true
+			valid: false
+			valueMissing: true  -> required
+			*/
+
+			function checkLength(obj, length) {
+				console.log(obj, length);
+			}
+			// checkValidity设置的所有条件都满足时返回true
+			console.log("是不是一个邮箱：", email1.checkValidity());
+
+			function checkUsername(obj) {
+
+			}
+
+			// 修改提醒
+			function checkGonghao(obj) {
+				console.log(obj.validity);
+				var it = obj.validity;
+				if (true === it.valueMissing) {
+					obj.setCustomValidity("不能为空");
+				} else if (true === it.patternMismatch) {
+					obj.setCustomValidity("不满足正则表达式")
+				} else {
+					obj.setCustomValidity("")
+				}
+			}
+
+			function checkPassword() {
+				var password1 = document.getElementById('Password'),
+					password2 = document.getElementById("Repassword");
+				if (password1.value != password2.value) {
+					password2.setCustomValidity("两次密码输入不一致");
+				} else {
+					password2.setCustomValidity("");
+				}
+			}
+
+		</script>
+
+	</body>
+</html>

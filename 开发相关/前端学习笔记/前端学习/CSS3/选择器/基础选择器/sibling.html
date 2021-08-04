@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>兄弟选择器+ 接下来的一个兄弟</title>
+		<style type="text/css">
+			section>div+article {
+				color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div>article外面的文字</div>
+			<article>
+				<div>article里面的文字</div>
+			</article>
+			<article>
+				<div>article里面的文字</div>
+			</article>
+		</section>
+	</body>
+</html>

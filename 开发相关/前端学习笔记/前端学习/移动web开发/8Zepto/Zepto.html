@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Zepto</title>
+	<script type="text/javascript" src="zepto.js"></script>
+
+	<style type="text/css">
+		.main,
+		div,
+		p {
+			font-size: 36px;
+			color: #008000;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main" class="main">Zepto</div>
+	<div id="main1" class="main1">
+		<p class="container"><span>Zepto</span></p>
+	</div>
+	<div id="main2" class="main2">
+		<p class="container"><span>Zepto</span></p>
+		<p class="container"><span>Zepto1</span></p>
+		<p class="container"><span>Zepto2</span></p>
+	</div>
+	<div id="a">
+		<div class="one">
+			<p></p>
+		</div>
+	</div>
+	<div id="b" class="b">
+		<div>
+			<div>孙子</div>
+		</div>
+	</div>
+	<div id="c">
+		<div>111</div>
+		<p>222</p>
+		<p>3333</p>
+	</div>
+	<div id="d">
+		<div>d-1111</div>
+		<h3>d_h3</h3>
+		<p>d-222</p>
+		<p>d-333</p>
+	</div>
+
+	<script type="text/javascript">
+		console.log($);
+		$(document).ready(function () {
+			console.log("zepto ready");
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// $('div').html("helloworld");
+			// $('div').addClass("container");
+
+			// $('div').html("helloworld").addClass("container");
+		});
+	</script>
+
+	<script type="text/javascript">
+		// DOM对象
+		var one = document.getElementById("main");
+		one.className += " one";
+
+		// zepto对象
+		$('#main').addClass('str');
+
+		// Zepto转DOM
+		// $('#main')[0].className += " two";
+		$('#main').get(0).className += " two";
+
+		// DOM转Zepto
+		$(one).addClass('str1');
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// $('.main').html($('.main').text() + "-add");
+
+			$("#main1 p").html("123")
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			console.log("--");
+			$("#main2>p").css("color", "red")
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			console.log("后代选择器：" + $("#a .one p").html("#a .one p"));
+			console.log("子元素选择器：" + $("#b>div").addClass("son"));
+			console.log("相邻选择器：" + $('#c div + p').css('color', 'blue'));
+			console.log($('#c p').length); // 2
+			console.log("兄弟选择器：" + $('#d div ~ p').css('color', 'yellow'));
+			console.log($('#d div ~ p').length); // 2
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 属性过滤选择器
+			/*
+			$('#id 元素名称[属性名称]')
+			$('#id 元素名称[属性名称="属性值"]')
+			$('#id 元素名称[属性名称^="起始值"]')
+			$('#id 元素名称[属性名称$="结尾值"]')
+			$('#id 元素名称[属性名称="属性值"][属性名称="属性值"]')
+			
+
+			// 子元素过滤选择器
+			/*
+			$('#id 标签:nth-child(n)')
+			$('#id 标签:nth-child(even)')
+			$('#id 标签:nth-child(odd)')
+			$('#id 标签:nth-child(2n)')
+			$('#id 标签:nth-child(2n+1)')
+			$('#id 标签:first-child')
+			$('#id 标签:last-child')
+			*/
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var $cr = $("<div class='cr'>插入的元素</div>")
+
+			// 插入操作
+			// 001 在子元素末尾插入
+			$('#id').append($cr);
+			$cr.appendTo($('#id'));
+
+			// 002 在子元素最前面插入
+			$('#id').prepend($cr);
+			$cr.prependTo($('#id'));
+
+			// 003 和$('#id')成为兄弟元素 在$('#id')后面
+			$('#id').after($cr);
+			($cr).insertAfter($('#id'));
+
+			// 004 和$('#id')成为兄弟元素 在$('#id')前面
+			$('#id').before($cr);
+			($cr).insertBefore($('#id'));
+
+
+			// 删除 remove/empty
+			// 001 整个li被删除
+			$('ul li').remove();
+			// 002 li的后代元素被删除（li保留）
+			$('ul li').empty();
+
+			// 复制结点
+			$('ul li').clone().appendTo(ul);
+
+			// 替换结点 replaceWith
+			$('#id').replaceWith('<spand>替换的标签</spand>')
+
+
+			// 包裹节点 wrap wrapAll
+			$('#id').wrap('<div></div>'); // 在$('#id')外层包裹一层div
+			$('p').wrapAll('<div></div>'); // $('p')所有的p标签添加一个div
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 属性操作
+			// id class src 都是属性，还可以自定义属性
+			// 001 获取属性值
+			$('#id').attr("属性名");
+			// 002 
+			$('#id').attr("属性名", "属性值");
+			// 003 
+			$('#id').attr({
+				"属性名": "属性值",
+				"属性名1": "属性值1"
+			});
+
+			// 删除属性
+			$('#id').removeAttr("属性名 属性名1");
+
+			// 添加样式
+			$('#id').addClass("样式名").addClass("样式名1");
+			$('#id').addClass("样式名 样式名1");
+
+			// 删除样式
+			$('#id').removeClass("样式名").removeClass("样式名1");
+			$('#id').removeClass("样式名 样式名");
+			$('#id').removeClass() // 删除所有样式
+
+			// 切换样式
+			$('#id').toggle(); // show 和 hide的切换
+
+			$('#id').toggleClass("样式名"); // 展示样式 和 隐藏样式的切换
+			// toggleClass == removeClass和addClass
+
+
+			// 是否包含某个样式
+			$('#id').hasClass("样式名"); // 返回bool
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// next获取 紧邻的 后面的 同辈 元素
+			$('#id').next();
+
+			// prev获取 紧邻的 前面的 同辈 元素
+			$('#id').prev();
+
+			// siblings获取 前后 所有的 同辈元素
+			$('#id').siblings();
+
+			//parent和parents
+			$('#id').parent(); // 获取父元素
+			$('#id').parents(); // 获取直系亲属
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 添加样式
+			// 001
+			$('#id').css("color", "red").css("fontSize", "36px");
+
+			// 002 
+			$('#id').css({
+				color: "red",
+				fontSize: "36px"
+			});
+
+			// 003 
+			$('#id').width(500);
+			$('#id').height(500);
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// DOM加载完毕
+		});
+
+		window.onload = function () {
+			// 所有的文件加载完毕 才会调用
+		}
+	</script>
+	<script type="text/javascript">
+		// ready的三种写法
+		// 001
+		$(document).ready(function () {
+
+		});
+		// 002 
+		$(function () {
+
+		})
+		// 003 
+		$().ready(function () {
+
+		})
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 事件绑定
+			// 001
+			$('.class').bind('click', function (e) {
+
+			})
+			// 002 简写方式
+			$('.class').click(function (e) {
+
+			})
+			// 003
+			$('.class').on('click', function (e) {
+
+			})
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 事件冒泡
+			/*
+				body 
+				c 事件
+				b 
+				a 事件
+				
+				从底到顶级：如果给a添加事件function，如果a、b、c、body谁添加了事件function就会执行那个事件
+			*/
+
+			// 事件捕获 zepto不支持事件捕获
+			// 从顶级到底
+			document.getElementById('id').addEventListener('click', function () {
+
+			}, true); // 默认是false 事件冒泡，true是事件捕获
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 事件委托与代理
+
+			// bind 非常消耗性能 有多少个li 执行多少次 (给顶级（ul）绑定事件，通过事件冒泡，判断点击的是li)
+			$('li').bind('click', function (e) {
+
+			})
+
+			// click 非常消耗性能 有多少个li 执行多少次
+			$('li').click(function (e) {
+
+
+			})
+
+			// one 只会调用一次
+			$('li').one('click', function (e) {
+
+			})
+
+			// live  其实给document绑定事件（一次）
+			$('li').live('click', function (e) {
+				/*
+					document 
+					body 
+					ul 
+					li 
+					
+					利用事件冒泡的方式，就叫做事件委托或代理
+					live优点：绑定一次
+					live的缺点：冒泡次数太多
+				*/
+			})
+
+			// delegate 
+			$('ul').delegate('li', 'click', function (e) {
+				/*
+					document 
+					body 
+					ul 
+					li 
+					
+					绑定在ul上 只需要冒泡一次
+					利用事件冒泡的方式，就叫做事件委托或代理
+					delegate有点：绑定一次 冒泡一次
+				*/
+			})
+
+			// on  delegate、live底层代码就是on  'li'参数是可选的
+			// 用on 不用delegate、live
+			$('ul').delegate('click', 'li', function (e) {
+				/*
+					document 
+					body 
+					ul 
+					li 
+					
+					绑定在ul上 只需要冒泡一次
+					利用事件冒泡的方式，就叫做事件委托或代理
+					delegate有点：绑定一次 冒泡一次
+				*/
+			})
+
+			// unbind 
+			$('li').unbind('click', function (e) {
+				/*
+					针对bind进行unbind
+				*/
+			})
+
+			// off  
+			$('li').off('click', function (e) {
+				/*
+					针对on进行off
+				*/
+			})
+
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 自定义事件
+
+			// 定义事件
+			$('#id').bind("自定义事件名称A", function () {
+				/*
+				
+				*/
+			})
+			// 触发事件
+			$("#id").trigger("自定义事件名称A");
+
+
+			// 命名空间
+			$('#id').bind("click", function () {
+				/*
+				
+				*/
+			})
+			$('#id').bind("click.命名空间", function () {
+				/*
+					命名空间
+				*/
+			})
+			$('#id').unbind("click", function () {
+				/*
+					有没有命名空间的事件都会取消
+				*/
+			})
+			$('#id').unbind(".命名空间", function () {
+				/*
+					只取消命名空间的事件
+				*/
+			})
+
+			// 绑定多个事件
+			$('#id').bind("click touchstart", function () {
+				/*
+					绑定了 click和touchstart
+				*/
+			})
+			$('#id').bind("click", function () {
+				/*
+					绑定了 click
+				*/
+			}).bind("touchstart", function () {
+				/*
+					绑定了 touchstart
+				*/
+			})
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 动画
+			/*
+				引入fx.js和fx_methods.js
+			*/
+			/*
+				
+				$('#id').triggle('slow');
+				$('#id').hide(3000);
+				$('#id').show('slow');
+				$('#id').fadeIn('slow');
+				$('#id').fadeOut('slow');
+				$('#id').fadeToggle('fast'); // 切换元素的淡入、淡出
+				$('#id #id1').fadeToggle('slow');
+				$('#id').fadeTo(3000, 0.3); // 0.3透明度
+		   */
+			/*
+				$('#id').animate({
+					left: "300px"，
+					height: "100px"
+				}, 3000, function() {
+					console.log("动画执行完毕");
+					$('#id').animate({
+						color: "red"
+					}, 2000, function() {
+						console.log("颜色改变的动画执行完毕")
+					})
+				})
+			 */
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// ajax
+			$.get("url", [data], function (response) {
+				console.log(response);
+			}, [dataType]);
+			// []中的可以不写，可以自己识别
+
+			$.post("url", {
+				sample: 'payload'
+			}, function (response) {
+
+			}, [dataType]);
+
+			$.ajax({
+				type: 'GET',
+				url: "url",
+				data: {
+					name: ""
+				},
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (xhr, type) {
+					console.log(type);
+				}
+			})
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 手势 touch模块
+			$('#id').bind('touchmove', function (e) {
+				e.preventDefault();
+			});
+
+			listen_to('#id');
+
+			function listen_to(el) {
+				$(el).tap(function () {
+					console.log("tap");
+				})
+					.singleTap(function () {
+						console.log("singleTap");
+					})
+					.doubleTap(function () {
+						console.log("doubleTap");
+					})
+					.swipe(function () {
+						console.log("swipe");
+					})
+					.swipeLeft(function () {
+						console.log("swipeLeft");
+					})
+					.swipeRight(function () {
+						console.log("swipeRight");
+					})
+					.swipeUp(function () {
+						console.log("swipeUp");
+					})
+					.swipeDwon(function () {
+						console.log("swipeDwon");
+					})
+					.longTap(function () {
+						console.log("longTap");
+					})
+			}
+		});
+	</script>
+
+
+	<script type="text/javascript" src="zepto.fullpage.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// Zepto插件 ;无任何作用 保险起见
+			;
+			(function ($) {
+				// 给插件增加了一个color方法
+				// $.fn.color = function(option) {
+				// 	// 默认值
+				// 	var options = $.extend({
+				// 		col: "blue",
+				// 		fz: "20px"
+				// 	}, option);
+				// 	this.css("color", options.col);
+				// 	this.css("fontSize", options.fz);
+
+				// 	return this;
+				// }
+			})();
+
+			// 多组插件
+			;
+			(function ($) {
+				// 给插件增加了一个color方法
+				$.extend($.fn, {
+					color: function (option) {
+						// 默认值
+						var options = $.extend({
+							col: "blue",
+							fz: "20px"
+						}, option);
+
+						this.css("color", options.col);
+						this.css("fontSize", options.fz);
+
+						return this;
+					},
+					background: function (option) {
+						var options = $.extend({
+							bg: "blue",
+						}, option);
+
+						this.css("backgroundColor", options.bg);
+
+						return this;
+					}
+				})
+
+			})();
+		})(Zepto);
+
+		// 调用插件方法
+		$("div").color({
+			col: 'red'
+		});
+	</script>
+
+	<!-- 引入自定义插件 -->
+	<script type="text/javascript" src="zepto.test.js">
+
+	</script>
+</body>
+
+</html>

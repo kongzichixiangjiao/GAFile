@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>fix</title>
+		<style type="text/css">
+			body {
+				height: 1800px;
+			}
+			.block, .block1 {
+				width: 80px;
+				height: 180px;
+				line-height: 80px;
+				text-align: center;
+				border: 2px solid black;
+			}
+			.block {
+				position: absolute;
+				top: 10px;
+				left: 20px;
+			}
+			.block1 {
+				position: fixed;
+				top: 10px;
+				left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="block">
+			绝对定位absolute
+		</div>
+		<div class="block1">
+			固定定位fix
+		</div>
+		
+		<p><storng>特点</storng></p>
+		<p>1、absolute随着窗口的滚动而滚动</p>
+		<p>固定定位元素不会随着视口滚动而滚动</p>
+		<p>继承absolute的特点</p>
+	</body>
+</html>

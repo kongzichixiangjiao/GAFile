@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Attribute</title>
+		<style type="text/css">
+			/* 带有名称（href）的元素 */
+			a[href] {
+				text-decoration: none;
+			}
+
+			/* 等于 */
+			a[href="#"] {
+				color: #FF0000;
+			}
+
+			/* 类-包含 */
+			a[class~="two"] {
+				color: #FFFF00;
+			}
+
+			/* 开头 */
+			a[href^="#"] {
+				color: #ADFF2F;
+			}
+
+			/* 结尾 */
+			a[href$="2"] {
+				color: #FFA500;
+			}
+
+			/* 包含 */
+			a[href*="3"] {
+				color: goldenrod;
+			}
+
+			/* 以value或者value-开头的元素 */
+			a[href|="3"] {
+				color: lightcoral;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">Attribute</a>
+		<a class="one two" href="#">Attribute</a>
+		<a class="two three" href="#">Attribute</a>
+		<a href="#">Attribute</a>
+		<a href="#1">Attribute</a>
+		<a href="#2">Attribute</a>
+		<a href="#3">Attribute</a>
+		<a href="12312">Attribute</a>
+	</body>
+</html>

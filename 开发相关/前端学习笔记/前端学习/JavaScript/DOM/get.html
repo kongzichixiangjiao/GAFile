@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>获取节点</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 注释结点 -->
+		<!-- 注释结点 -->
+		<input type="text" name="myDiv" value="请输入内容" />
+		<div id="myDiv">
+			lalallalal
+			<ul id="myUl" name="myUl">
+				<li class="light">1</li>
+				<li class="light dark">2</li>
+				<li class="light">3</li>
+			</ul>
+		</div>
+
+		<a name="target" href="#">错误元素</a>
+		<p id="target">正确元素</p>
+		<button id="button" type="button">开始测试</button>
+
+		北京<input type="checkbox" id="beijing" name="city" value="北京" />
+		天津<input type="checkbox" name="city" value="天津" />
+		上海<input type="checkbox" name="city" value="上海" />
+		<script type="text/javascript">
+			myReady(function() {
+				var myDiv = document.getElementById("myDiv");
+				console.log(myDiv.tagName); // DIV 
+
+				// var myUl = myDiv.getElementById("myUl"); // Uncaught TypeError: myDiv.getElementById is not a function
+
+			})
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var getElementById = function(id) {
+					console.log(id);
+					var el = document.getElementById(id);
+					// 判断是否IE浏览器
+					// IE解释\v为v 其他浏览器没有对\v解译  
+					// IE +v1 转变为NaN 其他浏览器转为+1
+					// IE !+"\v1" 为true 其他浏览器为false
+					if (!+"\v1") {
+						console.log("--");
+						if (el && el.id === id) {
+							return el;
+						} else {
+							var els = document.all[id];
+							n = els.length;
+							for (let i = 0; i < n; i++) {
+								if (els[i].id === id) {
+									return els[i];
+								}
+							}
+						}
+					}
+					console.log(el);
+					console.log(el.tagName);
+					return el;
+				}
+				console.log(getElementById("target").tagName);
+			})
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var myUl = document.getElementsByName("myUl");
+				var myDiv = document.getElementsByName("myDiv");
+				// var myUl = myDiv.getElementsByName("myUl") // Uncaught TypeError: myDiv.getElementsByName is not a function
+				var citys = document.getElementsByName("city");
+				console.log(myUl);
+				console.log(myDiv);
+				console.log(myDiv.item(0));
+				console.log(citys.length);
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var list1 = document.getElementsByTagName('li');
+				console.log(list1.length);
+				var list2 = document.getElementsByTagName('Li');
+				console.log(list2.length);
+
+				var inputs = document.getElementsByTagName('input');
+				console.log(inputs[0].value);
+
+				// 获取注释
+				var comment = document.getElementsByTagName('!');
+				console.log(comment[1]);
+
+				// 获取所有tagName
+				var all = document.getElementsByTagName('*');
+				for (let i = 0; i < all.length; i++) {
+					console.log(all[i]);
+				}
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var ul = document.getElementById('myUl');
+				var list1 = ul.getElementsByClassName("light");
+				var list2 = ul.getElementsByClassName("dark");
+				var list3 = ul.getElementsByClassName("light dark");
+				console.log(list1);
+				console.log(list2);
+				console.log(list3);
+			});
+		</script>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var myDiv = document.getElementById('myDiv');
+				var ul = myDiv.querySelector("#myUl");
+				// var ul = document.querySelector("#myUl");
+				var li = myDiv.querySelector('li:last-child');
+				console.log(ul);
+				console.log(li);
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var divs = document.querySelectorAll("div");
+				var i = 0;
+				while (i < divs.length) {
+					document.body.appendChild(document.createElement("div"));
+					i++;
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./GAAlert.css">
+</head>
+
+<body>
+    <button onclick="showGAAlert()">show方法</button>
+    <!-- <div class="galert">
+        <div class="mask">
+        </div>
+        <div class="wrap">
+            <div class="top">
+                <p>标题</p>
+                <i class="iconfont icon-closedx"></i>
+            </div>
+            <div class="middle">
+                <div class="message">文字描述</div>
+            </div>
+            <div class="halving_line"></div>
+            <div class="bottom">
+                <div class="btn cancle" >取消</div>
+                <div class="line"></div>
+                <div class ="btn confirm">确定</div>
+            </div>
+        </div>
+    </div> -->
+
+    <script src="./GAAlert.js"></script>
+    <script>
+        function abc() {
+
+            console.log("===");
+
+        }
+
+        var $alert = new $GAAlert({
+            message: "提示文案内容",
+            concleStr: "取消",
+            contentStyle: {
+                'fontSize': '30px',
+            },
+            titleStyle: {
+                color: 'red'
+            },
+            lineStyle: {
+                'background-color': 'orange'
+            },
+            'closedFunction': function () {
+                console.log("-关闭回调-")
+            },
+            hideDirection: 'bottom', //'bottom'
+            showDirection: 'scale_middle'
+        });
+
+        console.log($alert)
+        // $alert.show();
+        window.$alert = $alert;
+        console.log(window.$alert);
+
+
+    </script>
+    <script>
+        function showGAAlert() {
+            console.log("--");
+            window.$alert.show();
+        }
+    </script>
+</body>
+
+</html>

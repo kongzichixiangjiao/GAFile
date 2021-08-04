@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>搭建网页结构</title>
+</head>
+<body>
+<h1>标签div和span</h1>
+
+<p>div标签添加图片</p>
+<p>div:<strong>块级标签，占据一行，换行</strong></p>
+<p>块级标签有哪些：div、ul、ol、li、dl、dt、dd、h1~h6、p、form、ht</p>
+<div style="width:100px; height:100px;">
+	<img src="../assets/001.png">
+</div>
+<div style="width:100px; height:100px;">
+	<img src="../assets/001.png">
+</div>
+<div style="width:100px; height:100px;">
+	<img src="../assets/001.png">
+</div>
+<br>
+<br>
+<hr>
+<p>span标签添加图片</p>
+<p>span:<strong>行内标签，不在一行，换行</strong></p>
+<p>行内标签有哪些：b、em、img、input、a、sup、sub、textarea、span</p>
+<br>
+<span style="width:10pxneed_time_icon_cf.png; height:100px;">
+	<img src="../assets/001.png">
+</span>
+<span style="width:10pxneed_time_icon_cf.png; height:100px;">
+	<img src="../assets/001.png">
+</span>
+<span style="width:10pxneed_time_icon_cf.png; height:100px;">
+	<img src="../assets/001.png">
+</span>
+
+<!-- 标签嵌套规则 -->
+<!-- 块级元素可包含行内元素和某些块级元素 -->
+<div><h1></h1><a href=""></a></div>
+
+<!-- 行内元素不能包含块元素，只能包含行内元素 -->
+<a href=""><h1><div></div></h1></a> <!-- 错误 -->
+<span><em></em></span> <!-- 正确 -->
+
+<!-- 块级元素不能放在p标签内 -->
+<p>00<div>1111<h2>222</h2></div></p> <!-- 查看元素检查：嵌套规则错误了 -->
+
+<!-- 特殊块级元素只能包含行内元素，不能再包含块级元素 -->
+<!-- 如：h1~h6、p、dt -->
+
+<!-- 块级元素与块级元素并列，行内元素和行内元素并列 -->
+<div><h1></h1><p></p></div> <!-- 正确 -->
+<div><span></span><a href=""></a></div> <!-- 正确 -->
+<div><h1>666</h1><span>888</span></div> <!-- 错误 -->
+
+
+<h1>示例1</h1>
+
+<ul>
+	<li><strong>css层叠样式</strong></li>
+	<li><strong>CSS使用方法</strong>
+		<ol>
+		<li><em>行内样式</em></li>
+		<li><em>内部样式</em></li>
+		<li><em>外部样式</em></li>
+	</ol>
+	</li>
+	<li><strong>CSS优先级</strong></li>
+</ul>
+
+<h1>示例2</h1>
+
+
+<!-- 头部内容 -->
+<div>
+	<!-- logo -->
+	<div><img src="../assets/001.png"></div>
+	<!-- 导航 -->
+	<div>
+		<ul>
+			<li><a href="#">HTML5</a></li>
+			<li><a href="#">iOS</a></li>
+			<li><a href="#">Android</a></li>
+			<li><a href="#">JS</a></li>
+			<li><a href="#">PHP</a></li>
+		</ul>
+	</div>
+	<!-- banner -->
+	<div><img src=""></div>
+</div>
+
+<!-- 主体内容 -->
+<div>
+	<!-- 文章内容 -->
+	<div>
+		<h3>我是标题，h1检索</h3>
+		<h6>2天前&nbsp;&nbsp;308浏览&nbsp;&nbsp;1评论</h6>
+		<p>分段的文章内容使用p标签</p>
+	</div>
+	<!-- 链接区 -->
+	<div>
+		<!-- html -->
+		<dl>
+			<dt>HTML标题</dt>
+			<dd><img src=""></dd>
+			<dd>解释HTM</dd>
+		</dl>
+		<dl></dl>
+		<dl></dl>
+	</div>
+</div>
+<!-- 页脚内容 -->
+<div><p>学点儿有用的吧</p></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

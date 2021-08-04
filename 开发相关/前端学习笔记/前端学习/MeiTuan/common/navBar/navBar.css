@@ -1,0 +1,42 @@
+/*
+ * @Author: houjianan 
+ * @Date: 2020-11-24 10:40:28 
+ * @Last Modified by:   houjianan 
+ * @Last Modified time: 2020-11-24 10:40:28 
+ */
+
+.nav {
+    height: 1.706667rem;
+    border-bottom: 1px solid #b2b2b2;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    background-color: #fff;
+    
+}
+.nav .title {
+    font-size: 0.453333rem;
+    color: #2f2f2f;
+    text-align: center;
+    height: 100%;
+    line-height: 1.706667rem;
+
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav .back-icon {
+    width: 1.066667rem;
+    height: 1.066667rem;
+    position: absolute;
+    top: 0.413333rem;
+    left: 0.4rem;
+    background: url('./img/back.png') no-repeat center;
+    background-size: 20px;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery事件</title>
+		<script src="../jquery-3.5.1/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="index.js"></script>
+		<style type="text/css">
+			.mouseFunc {
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				text-align: center;
+				background-color: #7C7C7C;
+				float: left;
+				margin-top: 10px;
+				margin-right: 10px;
+				overflow: hidden;
+				/* display: flex; */
+				/* align-items: center; */
+			}
+
+			.internal {
+				display: inline-block;
+				/*文字容器要转成行内块元素*/
+				width: 100%;
+				height: auto;
+				line-height: 24px;
+				vertical-align: middle;
+				/*设置元素垂直对齐方式为中部*/
+				background-color: #F2F4F6;
+			}
+
+			.scroll {
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				text-align: center;
+				background-color: #7C7C7C;
+				float: left;
+				margin-top: 10px;
+				margin-right: 10px;
+				display: flex;
+				align-items: center;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mouseFunc click">
+			<div class="internal">鼠标事件click1111</div>
+		</div>
+		<div class="mouseFunc dbclick">
+			<div class="internal">鼠标事件dblclick</div>
+		</div>
+		<div class="mouseFunc mousedown">
+			<div class="internal">鼠标事件mousedown</div>
+		</div>
+		<div class="mouseFunc mouseup">
+			<div class="internal">鼠标事件mouseup</div>
+		</div>
+		<div class="mouseFunc mouseenter">
+			<div class="internal">鼠标事件mouseenter</div>
+		</div>
+		<div class="mouseFunc mouseleave">
+			<div class="internal">鼠标事件mouseleave</div>
+		</div>
+		<div class="mouseFunc hover">
+			<div class="internal">鼠标事件hover</div>
+		</div>
+		<div class="mouseFunc mouseover">
+			<div class="internal">鼠标事件mouseover</div>
+		</div>
+		<div class="mouseFunc mouseout">
+			<div class="internal">鼠标事件mouseout</div>
+		</div>
+		<div class="mouseFunc mousemove">
+			<div class="internal">鼠标事件mousemove</div>
+		</div>
+		<div class="scroll">
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+			<div class="internaScrolll">鼠标事件scroll</div>
+			<br>
+		</div>
+		
+		<div>
+			<form action="javascript:alert('表单提交');" method="">
+				<input class="formElement" type="text" name="" id="" value="" />
+				<input type="number" name="" id="" value="" />
+				<input type="date" name="" id="" value="" />
+				<input type="checkbox" name="" id="" value="" />
+				<input type="button" name="" id="" value="大按钮" />
+				<button>提交</button><!-- <input type="submit"> -->
+			</form>
+			<textarea class="formElement" rows="5" cols="5">
+				
+			</textarea>
+		</div>
+		
+		<div class="mouseFunc on">
+			<div class="internal">事件绑定</div>
+		</div>
+		<div class="mouseFunc off">
+			<div class="internal">事件取消</div>
+		</div>
+		<div>
+			<button class="obj">这个按钮点击没有效果</button>
+			<button class="bind">绑定</button>
+			<button class="unbind">取消绑定</button>
+			<button class="one">绑定一次</button>
+			<div class="buttonDiv" style="display: none;">第一个按钮被点击！</div>
+		</div>
+		
+	</body>
+</html>

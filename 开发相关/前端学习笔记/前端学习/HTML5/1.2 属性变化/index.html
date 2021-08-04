@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		
+		<link rel="stylesheet" type="text/css" href="../../CSS/1、CSS基础/style.css"/>
+		<!-- async="async" --> <!-- 多线程加载js，兼容所有浏览器 -->
+		<!-- defer="defer" --> <!-- 等界面渲染完再加载js，只在IE浏览器有效 -->
+		<script async="async" src="index.js" type="text/javascript" charset="utf-8"></script>
+		<!-- target： -->
+		<base href="http://localhost/" target="_blank" />
+		<title></title>
+		
+		<style type="text/css">
+			* {
+				margin: 0;
+			}
+		</style>
+		<script type="text/javascript">
+			document.write("www.imooc.com");
+			document.write("<br>");
+		</script>
+		
+	</head>
+	<body>
+		<input type="email" name="email" id="" value="" />
+		<input type="url" name="url">
+		<input type="tel" name="tel" id="tel" value="" />
+		<input type="number" name="number" id="number" value="" />
+		<br>
+		<input type="date">
+		<input type="month" name="" id="" value="" />
+		<input type="time">
+		<input type="datetime-local" name="" id="" value="" />
+		<!-- datetime不兼容 -->
+		<input type="datetime" name="" id="" value="" />
+		<br>
+		<input type="range" name="" id="" value="30" max="100" min="0" />
+		<input type="search" name="" id="" value="" />
+		<input type="color" name="" id="" value="" />
+
+		<br>
+		<p>表单属性</p>
+		autocomplete：on/off 默认是on，自动保存-双击-补全
+		autofocus: autofocus 获取焦点
+		multiple：multiple 上传多个可试用file、email
+		placeholder：placeholder
+		require:必填
+		<form action="" method="" autocomplete="on">
+			<input type="text" name="text" id="" value="" autofocus="autofocus" placeholder="我是placeholder" />
+			<input type="email" name="email" id="" value="" autocomplete="off" />
+			<input type="file" name="" id="" value="" multiple="multiple" />
+			<input type="submit">
+		</form>
+		<br>
+
+		link：地址栏前面的小图标 sizes
+		<link rel="icon" type="image/gif" sizes="16x16" href="icon.gif"/>
+		<br>
+		target：需要写到head标签中 将所有的跳转改成_blank
+		<base href="http://localhost/" target="_blank" />
+		<br>
+		超链接
+		link 
+		
+		<br>
+		ol新增属性start和reversed
+		<ol start="4" reversed="reversed">
+			<li>html</li>
+			<li>ios</li>
+			<li>android</li>
+			<li>flutter</li>
+			<li>weex</li>
+		</ol>
+		<br>
+		离线应用mainfest
+		<!-- <html mainfest="index.mainfest"></html> -->
+		<br>
+		scoped内嵌CSS  
+		<!-- <style scoped>
+			
+		</style> -->
+	</body>
+</html>

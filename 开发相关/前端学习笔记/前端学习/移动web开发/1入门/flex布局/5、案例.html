@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+		<title>淘宝-我的</title>
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css" />
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			.myPage {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.top {
+				height: 40px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				background-color: #F3F5F7;
+			}
+
+			.top>i {
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			.mineInfo {
+				display: flex;
+				height: 80px;
+			}
+
+			.mineInfo .headImg {
+				width: 80px;
+				background: url(../../../CSS/assets/001.png) no-repeat center;
+				background-size: 50px;
+			}
+
+			.mineInfo .info {
+				background-color: #008000;
+				flex: 1;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+
+			.mineInfo .info>p {
+				font-size: 26px;
+				font-weight: bold;
+			}
+
+			.mineInfo .info .mineInfoDescribe {
+				display: flex;
+				flex-direction: row;
+				margin-top: -10px;
+			}
+
+			.mineInfo .info .mineInfoDescribe>p {
+				margin: auto 10px;
+			}
+
+			.mineInfo>i {
+				width: 40px;
+				text-align: center;
+				align-self: center;
+			}
+
+			.statisticsInfo {
+				display: inline-flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+			}
+
+			.statisticsInfo>div {
+				height: 70px;
+				border: 1px solid #0000FF;
+				box-sizing: border-box;
+				flex: 1;
+
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.newMessage {
+				padding: 20px;
+			}
+
+			.newMessage .wrap {
+				width: 100%;
+				height: 160px;
+				display: flex;
+				flex-flow: row wrap;
+				background-color: #008000;
+				border-radius: 10px;
+			}
+
+			.newMessage .wrap>div {
+				width: 50%;
+				height: 50%;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+
+			.newMessage .wrap>div:nth-child(2n) {
+				background-color: #F4F6FA;
+			}
+
+			.newMessage .wrap>div:nth-child(2) {
+				border-top-right-radius: 10px;
+			}
+
+			.newMessage .wrap>div:nth-child(4) {
+				border-bottom-right-radius: 10px;
+			}
+
+			.newMessage .wrap>div {}
+
+			.myOrder {
+				/* height: 100%; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="myPage">
+
+			<div class="top">
+				<i class="iconfont icon-005-shoukuaidi">亲情号</i>
+				<i class="iconfont icon-007-dabao"></i>
+				<i class="iconfont icon-006-fahuo"></i>
+			</div>
+			<div class="mineInfo">
+				<div class="headImg"></div>
+				<div class="info">
+					<p>设置淘宝昵称</p>
+					<div class="mineInfoDescribe">
+						<i class="iconfont icon-016-dabao"></i>
+						<p>在这里和淘友们分享好物</p>
+						<i class="iconfont icon-016-dabao"></i>
+					</div>
+				</div>
+				<i class="iconfont icon-016-dabao"></i>
+			</div>
+			<div class="statisticsInfo">
+				<!-- 收藏个数、关注店铺数量、足迹、红包卡卷 -->
+				<div class="sc">
+					<p>12</p>
+					<p>收藏</p>
+				</div>
+				<div class="gz">
+					<p>12</p>
+					<p>收藏</p>
+				</div>
+				<div class="zj">
+					<p>12</p>
+					<p>收藏</p>
+				</div>
+				<div class="hb">
+					<p>12</p>
+					<p>收藏</p>
+				</div>
+			</div>
+			<div class="newMessage">
+				<div class="wrap">
+					<div class="hyzx">
+						<div>
+							<p>会员中心</p>
+							<p>淘气值提升秘籍</p>
+						</div>
+						<i class="iconfont icon-017-mudedi"></i>
+					</div>
+					<div class="tmjf">
+						<div>
+							<p>天猫积分</p>
+							<p>对专享话费券</p>
+						</div>
+						<i class="iconfont icon-017-mudedi"></i>
+					</div>
+					<div class="tbsqk">
+						<div>
+							<p>淘宝省钱卡</p>
+							<p>领91元红包</p>
+						</div>
+						<i class="iconfont icon-017-mudedi"></i>
+					</div>
+					<div class="mflsg">
+						<div>
+							<p>会员中心</p>
+							<p>会员中心</p>
+						</div>
+						<i class="iconfont icon-017-mudedi"></i>
+					</div>
+				</div>
+			</div>
+			<div class="myOrder">我的订单</div>
+		</div>
+
+	</body>
+</html>

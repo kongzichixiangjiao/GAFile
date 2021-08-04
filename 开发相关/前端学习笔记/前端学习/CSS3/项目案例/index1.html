@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>布局</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			.content {
+				background-color: #F2F4F6;
+				width: 800px;
+				text-align: center;
+				margin: 0 auto;
+			}
+
+			.sl {
+				width: 300px;
+				height: 40px;
+				margin: 0 auto;
+				background-color: #00AAEE;
+			}
+
+			.sl>p {
+				position: relative;
+				float: left;
+				width: 70px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				color: #333333;
+			}
+
+			.sl>p:nth-child(2n) {
+				font-weight: bold;
+				font-size: 20px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="sl">
+				<p>数量：</p>
+				<p>-</p>
+				<p>总数量</p>
+				<p>+</p>
+			</div>
+			<div></div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+	</body>
+</html>

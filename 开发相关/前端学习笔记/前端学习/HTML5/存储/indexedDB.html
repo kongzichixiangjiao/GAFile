@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>indexedDB</title>
+	</head>
+	<body>
+
+		<script type="text/javascript">
+			// 数据库名字，版本号
+			var request = indexedDB.open('db', 14);
+			console.log(request);
+
+			request.onsuccess = function() {
+				console.log("数据库创建成功");
+			}
+			request.onerror = function() {
+				console.log("数据库创建失败");
+			}
+
+			request.onupgradeneeded = function() {
+				console.log("数据库升级了");
+				var db = request.result;
+
+				// db.createObjectStore("test1", {
+				// 	autoIncrement: true // 主键自增
+				// });
+
+				// db.createObjectStore("test2", {
+				// 	keyPath: 'id' // id为主键
+				// });
+
+				// db.createObjectStore("test3", {
+				// 	autoIncrement: true // 主键自增
+				// });
+
+				// var store = db.createObjectStore("test4", {
+				// 	keyPath: 'id' // id为主键
+				// });
+
+				// // 索引 name  
+				// store.createIndex('test4', 'name', {
+				// 	unique: true // name是否唯一性
+				// });
+
+				var store = db.createObjectStore("test5", {
+					keyPath: 'id', // id为主键
+				});
+				store.createIndex('test5', 'age', {
+					unique: true // name是否唯一性
+				});
+			}
+			var json = [{
+				"id": 106,
+				"name": 'hjn',
+				"age": 31
+			}, {
+				"id": 103,
+				"name": 'hjn1',
+				"age": 32
+			}, {
+				"id": 104,
+				"name": 'hjn2',
+				"age": 33
+			}, {
+				"id": 105,
+				"name": 'hjn3',
+				"age": 34
+			}];
+
+			setTimeout(function() {
+				var db = request.result;
+				// readonly  readwrite
+				var transaction = db.transaction(['test5'], 'readwrite');
+				var store = transaction.objectStore('test5');
+
+				// 游标和索引
+				var index = store.index('test5');
+				var requestNode = index.openCursor(IDBKeyRange.upperBound(33));
+				requestNode.onsuccess = function() {
+					var cursor = requestNode.result;
+
+					if (cursor) {
+						if (cursor.value.name == 'hjn-change') {
+							console.log("----");
+							// cursor.update({
+							// 	"id": 106,
+							// 	"name": 'hjn-change',
+							// 	"age": 31
+							// });
+							cursor.delete().onsuccess = function() {
+								console.log("删除成功");
+							};
+						}
+						console.log(cursor.value);
+						cursor.continue();
+					}
+				}
+
+				// 游标
+				// var requestNode = store.openCursor(IDBKeyRange.only(105))
+				// var requestNode = store.openCursor(IDBKeyRange.upperBound(104, false)); // false 包含104
+				// var requestNode = store.openCursor(IDBKeyRange.upperBound(104, true)); // true 不包含104
+				// var requestNode = store.openCursor(IDBKeyRange.lowerBound(104, true)); // 大于104的 不好含104
+				// var requestNode = store.openCursor(IDBKeyRange.bound(103, 105)); // 103 - 105 包含103和105
+				// var requestNode = store.openCursor(IDBKeyRange.bound(103, 105, true)); 
+				// var requestNode = store.openCursor(IDBKeyRange.bound(103, 105, true, true));
+				// var requestNode = store.openCursor(IDBKeyRange.bound(103, 105), 'prev'); // prev逆序 next顺序
+				// requestNode.onsuccess = function() {
+				// 	// console.log(requestNode.result);
+				// 	// console.log(requestNode.result.value);
+				// 	// console.log(requestNode.result.value.name);
+				// 	var cursor = requestNode.result;
+				// 	if (cursor) {
+				// 		console.log(cursor.value);
+				// 		cursor.continue();
+				// 	}
+				// }
+
+				// 索引取值
+				// var index = store.index('test4');
+				// index.get('hjn2').onsuccess = function(e) {
+				// 	// debugger;
+				// 	console.log(e.target.result.age);
+				// }
+
+				// store.add(json);
+				// 已经存在的id 不能再存储，数组内其他的数据也存不进去
+				// for (let i = 0; i < json.length; i++) {
+				// 	console.log(json[i]);
+				// 	// debugger;
+				// 	store.add(json[i]);
+				// }
+
+				// store.put({
+				// 	"id": 111,
+				// 	"name": 'hjn-new',
+				// 	"age": 30
+				// });
+
+				// store.delete(11);
+
+				// store.clear(); // 删除所有数据
+
+				// 	keyPath: 'id' // id为主键
+				// var requestNode = store.get(106);
+				// requestNode.onsuccess = function() {
+				// 	let result = requestNode.result;
+				// 	console.log(result);
+				// 	console.log(result.id);
+				// 	console.log(result.name);
+				// 	console.log(result.age);
+				// }
+				// requestNode.onerror = function() {
+				// 	console.log(requestNode);
+				// }
+
+				// autoIncrement: true // 主键自增
+				// var requestNode = store.get(1);
+				// requestNode.onsuccess = function() {
+				// 	let result = requestNode.result;
+				// 	console.log(result);
+				// 	console.log(result.id);
+				// 	console.log(result.name);
+				// 	console.log(result.age);
+				// }
+				// requestNode.onerror = function() {
+				// 	console.log(requestNode);
+				// }
+
+				// var requestNode = store.getAll();
+				// requestNode.onsuccess = function() {
+				// 	let result = requestNode.result;
+				// 	console.log(result);
+				// 	for (let i = 0; i < result.length; i++) {
+
+				// 		console.log(result[i].id);
+				// 		console.log(result[i].name);
+				// 		console.log(result[i].age);
+
+				// 	}
+				// }
+				// requestNode.onerror = function() {
+
+				// }
+
+			}, 300);
+		</script>
+	</body>
+</html>

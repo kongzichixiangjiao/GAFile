@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/* 
+			固定单位  px
+			相对单位 %/em/rem/vw/vh
+			 
+			fontsize在pc端最小是12
+			 
+			em: 1em = 自身字体大小（自身没设置字体大小，从父元素继承）*1
+			如果设置div高度为5em，div的fontsize是12，那么div高度换算成px就是 5*12=60px
+			段落首行缩进 text-indent: 2em; 就是缩进两个字
+			
+			rem：root element  root->html 根据根（html）的font-size计算
+			
+			vw/vh  屏幕宽一共100vw  50vw 就是 50%    
+			
+			
+			
+			375px -> 1rem = 20px; (20px是自定义的，方便计算)
+			height = 50 / 20 = 2.5rem
+			750px -> 1rem = 40px;
+			height = 100 / 40 = 2.5rem;
+			如果从375px->750px 改变屏幕大小，让布局按比例扩大，只需要改变1rem=多少px即可。
+			*/
+
+			/* 
+			  断点
+			  超小屏幕：xs: <576px
+			  sm: 576px ~ 768px 
+			  md: 768px ~ 992px
+			  lg: 992px ~ 1200px 
+			  超大屏幕：xl: > 1200px
+			  */
+			@media (max-width: 576px) {}
+
+			@media (min-width: 577px) and (max-width: 768px) {}
+
+			@media (min-width: 769px) and (max-width: 992px) {}
+
+			@media (min-width: 993px) and (max-width: 1200px) {}
+
+			@media (min-width: 1200px) {}
+
+
+			/* all(default) screen/print/speech */
+			/* 与:and 或:, 非:not */
+			/* 大于400 小于900 */
+			@media screen and (min-width: 400px),
+			(max-width: 900px) {
+				body {
+					background-color: #008000;
+				}
+
+				p {
+					font-size: 60px;
+					color: white;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				body {
+					background-color: #fff;
+				}
+
+				p {
+					font-size: 10px;
+					color: black;
+				}
+			}
+
+			/* 像素比 最大是2 */
+			/* iphone678 r3 */
+			@media screen and (-webkit-device-pixel-ratio:2) {
+				.device-pixel-ratio {
+					font-size: 130px;
+					color: white;
+				}
+			}
+
+			/* iphoneX iphone678plus r3 */
+			@media screen and (-webkit-device-pixel-ratio:3) {
+				.device-pixel-ratio {
+					font-size: 30px;
+					color: yellow;
+				}
+			}
+
+			@media screen and (orientation:landscape) {
+				.orientation {
+					font-size: 30px;
+					color: #fff;
+				}
+			}
+
+			@media screen and (orientation:portrait) {
+				.orientation {
+					font-size: 100px;
+					color: #000;
+				}
+			}
+
+			@media print (min-width: 400px) {
+				/* command + p */
+			}
+			.setRemUnit {
+				font-size: 2rem;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<p>媒体查询</p>
+		<p class="device-pixel-ratio">像素比</p>
+		<p class="orientation">媒体横竖屏</p>
+		<p class="setRemUnit">setRemUnit</p>
+
+		<script type="text/javascript">
+			function setRemUnit() {
+				var docEl = document.documentElement;
+				var viewWidth = docEl.clientWidth;
+				docEl.style.fontSize = viewWidth / 375 * 20 + 'px'; // 1rem = 20px 
+				console.log(docEl.style.fontSize);
+			}
+			setRemUnit();
+			// window.onresize = setRemUnit; // 当视口发生改变时调用setRemUnit
+		</script>
+	</body>
+</html>

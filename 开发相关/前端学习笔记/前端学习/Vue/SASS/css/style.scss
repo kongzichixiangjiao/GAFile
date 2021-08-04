@@ -1,0 +1,64 @@
+$color: #f00;
+
+$list: (1, 2, 3);
+
+/* list */
+.list {
+    color: $color;
+    z-index: length($list: $list);
+
+    @debug set-nth($list: $list, $n: 1, $value: "x");
+    @debug join($list, (123, 99));
+    @debug append($list, 22);
+    @debug index($list, 2);
+}
+
+/* string */
+
+$string: 'hello hjn';
+$stringNo: hello;
+$stringUP: 'HELLO';
+
+.string {
+    background-image: unquote($string);
+    background-image: unquote($stringNo);
+    z-index: str-length($string);
+
+    @debug str-insert($string, $insert: '--add', $index: 2); // h--addello hjn
+    @debug str-index($string, $substring: "h"); // 1
+
+    background-image: to-lower-case($stringUP);
+    background-image: to-upper-case($string);
+}
+
+/* map */
+$map: (top: 1px, right: 4px, bottom: 3px, left: 2px, width: 100px);
+
+.map {
+    width: map-get($map, $key: width);
+    margin-left: map-get($map, left);
+
+    @debug map-keys($map); // op, right, bottom, left, width
+    @debug map-values($map); // 1px, 4px, 3px, 2px, 100px
+    @debug map-has-key($map, key_abc); // false
+}
+
+@mixin foo($args...) {
+    @debug keywords($args); // (arg1: "a", arg2: "b")
+}
+
+@include foo($arg1: 'a', $arg2: 'b');
+
+
+@function px2rem($px) {
+    $rem: 37.5px;
+
+    @debug $rem;
+
+    @return ($px / $rem)+rem;
+}
+
+$rem1: 100px;
+.div {
+    width: px2rem($rem1);
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>伪类</title>
+		<style type="text/css">
+			a {
+				text-decoration: none;
+			}
+
+			/* 默认颜色 */
+			a:link {
+				color: #000000;
+			}
+
+			/* 经过 */
+			a:hover {
+				color: #f00;
+			}
+
+			/* 按下去 */
+			a:active {
+				color: #ff0;
+			}
+
+			/* 访问过 */
+			a:visited {
+				color: #00AAEE;
+			}
+			
+			input {
+				width: 200px;
+				height: 30px;
+				border: 5px solid #f00;
+			}
+			/* 获取光标 */
+			input:focus {
+				background: #00AAEE;
+			}
+			/* 不可编辑状态 */
+			input:disabled {
+				background: #0000FF;
+				border: 3px solid #FF0000;
+			}
+			/* 可编辑状态 */
+			input:enabled {
+				background: #0000FF;
+				border: 6px solid #BDBDBC;
+			}
+		</style>
+	</head>
+	<body ontouchstart="">
+		<a href="#">link1</a>
+		<br>
+		<input type="text">
+		<br>
+		UI元素状态伪类
+		<input type="text" disabled="disabled">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		
+		<br>
+		
+	</body>
+</html>

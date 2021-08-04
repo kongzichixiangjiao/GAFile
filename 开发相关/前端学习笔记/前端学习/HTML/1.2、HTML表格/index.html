@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>表格</title>
+</head>
+<body>
+<h1>表格</h1>
+
+<h3>标签</h3>
+<p>table，tr，td，th，caption</p>
+<dl>
+	<dt>table</dt>
+	<dd>表格</dd>
+
+	<dt>tr</dt>
+	<dd>行</dd>
+	
+	<dt>td</dt>
+	<dd>列</dd>
+
+	<dt>th</dt>
+	<dd>表头：加粗、居中</dd>
+
+	<dt>caption</dt>
+	<dd>标题</dd>
+
+</dl>
+
+<!-- 2行3列 -->
+<table border="1" width="500px">
+	<caption>前端工程师平均工资</caption>
+	<tr>
+		<th height="40px" rowspan="2">城市</th>
+		<th colspan="2">2014年</th>
+		<!-- <th>2014年</th> -->
+		<th rowspan="2">2015年</th>
+		<th rowspan="2">2016年</th>
+	</tr>
+	<tr>
+		<!-- <td>城市</td> -->
+		<td>上半年</td>
+		<td>下半年</td>
+		<!-- <td>2015年</td>
+		<td>2016年</td> -->
+	</tr>
+	<tr>
+		<td>北京</td>
+		<td>7000</td>
+		<td>7500</td>
+		<td>10000</td>
+		<td>12000</td>
+	</tr>
+	<tr>
+		<td>上海</td>
+		<td>7000</td>
+		<td>7500</td>
+		<td>10000</td>
+		<td>12000</td>
+	</tr>
+	<tr>
+		<td>合计</td>
+		<td>7000</td>
+		<td>7500</td>
+		<td>10000</td>
+		<td>12000</td>
+	</tr>
+</table>
+
+<strong>带结构的表格，加载的时候按照结构块加载</strong>
+<dl>
+	<dt>thead</dt>
+	<dd>表格的头</dd>
+
+	<dt>tbody</dt>
+	<dd>表格的主题</dd>
+
+	<dt>tfoot</dt>
+	<dd>表格的脚</dd>
+</dl>
+
+<table border="6" width="400px" bgcolor="#c3c3c3" cellspacing="10px" cellpadding="10px" align="center" frame="box" rules="all">
+	<caption>标题</caption>
+	<thead>
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>学校</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>侯大</td>
+			<td>30</td>
+			<td>小学</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr align="center" valign="bottom" bgcolor="rgb(10, 10, 10)">
+			<td height="40px">雷大</td>
+			<td>29</td>
+			<td>大学</td>
+		</tr>
+	</tfoot>
+</table>
+
+<br>
+<br>
+<strong>表格（table）属性</strong>
+<ul>
+<li>width：规定单元格的宽度</li>
+<li>align：表格相对周围元素的对齐方式</li>
+<li>border：规定表格边框的宽度</li>
+<li>bgColor：表格的背景颜色</li>
+<li>cellpadding：单元边沿与其内容之间的空白</li>
+<li>cellspacing：单元格之间的空白</li>
+<li>frame：规定外侧边框的哪个部分是可见的</li>
+<li>rules：规定内侧边框的哪个部分是可见的</li>
+</ul>
+
+<strong>tr标签属性</strong>
+<ul>
+	<li>align：行内容的水平对齐</li>
+	<li>valign：行内容的垂直对齐</li>
+	<li>bgColor：背景色</li>
+</ul>
+
+<strong>thead、tbody、tfoot</strong>
+<ul>
+	<li>align：内容水平对齐</li>
+	<li>valign：内容垂直对齐</li>
+</ul>
+
+<strong>跨列属性：colspan，后面接数字，跨几个单元格， 跨1个单元格，删除一个多余的</strong>
+<strong>跨行属性：rowspan，后面接数字，跨几个单元格</strong>
+
+<br>
+<br>
+
+<strong>嵌套表格 要放到td中</strong>
+<table border="6" width="400px" bgcolor="#c3c3c3" cellspacing="10px" cellpadding="10px" align="center" frame="box" rules="all">
+		<tr>
+			<td>2014年</td>
+			<td>2015年</td>
+			<td>2016年</td>
+		</tr>
+		<tr>
+			<td>
+				<table border="1" width="400px" bgcolor="#c3c3c3" cellspacing="10px" cellpadding="10px" align="center" frame="box" rules="all">
+					<tr>
+						<td>上半年</td>
+						<td>下半年</td>
+					</tr>
+					<tr>
+						<td>8000</td>
+						<td>9000</td>
+					</tr>
+				</table>
+			</td>
+			<td>10000</td>
+			<td>10000</td>
+		</tr>
+	</table>
+</table>
+
+
+<h1>使用table排版布局</h1>
+<table width="100%" bgcolor="#f2f2f2">
+	<tr height="80px" bgcolor="#14191e"><td>1</td></tr> <!-- 页头 -->
+	<tr height="20px"><td></td></tr> <!-- 上空行 缝隙 -->
+	<tr><td>
+		<table align="center" width="1024px">
+			<tr>
+				<td width="240px" valign="top">
+					<table width="100%" bgcolor="#ffffff">
+						<tr><td align="center" height="60px">关于我们</td></tr>
+						<tr><td align="center" height="60px">团队介绍</td></tr>
+						<tr><td align="center" height="60px">人才招聘</td></tr>
+						<tr><td align="center" height="60px">讲师招募</td></tr>
+						<tr><td align="center" height="60px">联系我们</td></tr>
+						<tr><td align="center" height="60px">常见问题</td></tr>
+						<tr><td align="center" height="60px">意见反馈</td></tr>
+						<tr><td align="center" height="60px">友情链接</td></tr>
+					</table>
+				</td> <!-- 左内容 -->
+				<td width="20px"></td> <!-- 空隙 -->
+				<td width="764px" bgcolor="#ffffff">
+	<pre>
+	Tom's at the piano talkin' to a ghost
+	汤姆用灵魂和钢琴交流
+	Playin' with his eyes shut tight
+	紧闭着双眼沉醉其中
+	Here's a little song I learnt it from the wind
+	我学会了微风吹来的这首小曲
+	I heard it on the wind last night
+	我在夜晚的凉风中听到了这首曲子
+	Beats workin' in the field for a little blind boy
+	在农田里劳动的小小盲男孩儿
+	Tom's at the piano talkin' to a ghost
+	汤姆用灵魂和钢琴交流
+	Playin' with his eyes shut tight
+	紧闭着双眼沉醉其中
+	Here's a little song I learnt it from the wind
+	我学会了微风吹来的这首小曲
+	I heard it on the wind last night
+	我在夜晚的凉风中听到了这首曲子
+	Beats workin' in the field for a little blind boy
+	在农田里劳动的小小盲男孩儿
+	</pre>
+				</td> <!-- 右内容 -->
+			</tr>
+		</table>
+
+	</td></tr> <!-- 内容 -->
+	<tr height="20px"><td></td></tr> <!-- 下空行 缝隙 -->
+	<tr height="150px" bgcolor="#14191e"><td>1</td></tr> <!-- 页脚 -->
+</table>
+
+
+<h1>练习</h1>
+
+<table width="100%">
+	<tr>
+		<td>
+			<table cellpadding="10px">
+				<tr>
+					<td width="40px"></td>
+					<td> Sublime Text</td>
+					<td> File</td>
+					<td> Edit</td>
+					<td> Selection</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table cellpadding="10px" align="right">
+				<tr>
+					<td>😊</td>
+					<td>😢</td>
+					<td>🌲</td>
+					<td>😝</td>
+					<td>🍚</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="600px" bgcolor="#f2f2f2" colspan="2" align="center">
+			主要内容
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<table width="100%">
+			<tr>
+				<td width="50px" align="center">1</td>
+				<td width="50px" align="center">2</td>
+				<td width="50px" align="center">3</td>
+				<td width="50px" align="center">4</td>
+				<td width="50px" align="center">5</td>
+				<td width="50px" align="center">6</td>
+			</tr>
+		</table>
+	</tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

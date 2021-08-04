@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS文本样式属性</title>
+		<style>
+			h1 {
+				font-family: "黑体";
+			}
+
+			p {
+				font-family: "微软雅黑", "黑体", "宋体";
+				font-size: 20px;
+				font-style: italic;
+				font-weight: normal;
+				/* font-variant: small-caps; */
+				/* 字母大写 */
+
+			}
+
+			.in {
+				font-size: 0.5in;
+			}
+
+			.cm {
+				font-size: 0.5cm;
+			}
+
+			.mm {
+				font-size: 5mm;
+			}
+
+			.pt {
+				font-size: 15pt;
+			}
+
+			.pc {
+				font-size: 2pc;
+			}
+
+			.xxSmall {
+				font-size: xx-small;
+			}
+
+			.xSmall {
+				font-size: x-small;
+			}
+
+			.small {
+				font-size: small;
+			}
+
+			.medium {
+				font-size: medium;
+			}
+
+			.large {
+				font-size: large;
+			}
+
+			.xLarge {
+				font-size: x-large;
+			}
+
+			.xxLarge {
+				font-size: xx-large;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">字体</h1>
+		<p>
+			字体：font-family
+			文字大小：font-size
+			文本颜色：color
+			文字粗细：font-weight
+			文字样式：font-style
+		</p>
+
+		<hr>
+		<p><strong>绝对字体大小</strong></p>
+		<p>默认字体大小</p>
+		<p class="in">文字大小是0.5in</p>
+		<p class="cm">文字大小是0.5cm</p>
+		<p class="mm">文字大小是5mm</p>
+		<p class="pt">文字大小是15pt</p>
+		<p class="pc">文字大小是2pc</p>
+		<p class="xxSmall">文字大小是xx-small</p>
+		<p class="xSmall">文字大小是x-small</p>
+		<p class="small">文字大小是small</p>
+		<p class="medium">文字大小是medium</p>
+		<p class="large">文字大小是large</p>
+		<p class="xLarge">文字大小是x-large</p>
+		<p class="xxLarge">文字大小是xx-large</p>
+
+		<p><strong>相对字体大小</strong></p>
+		<p>相对字体大小相对字体大小相对字体大小相对字体大小相对字体大小</p>
+		<p><strong>em和%都是相对父标签</strong></p>
+		<div style="font-size: 20px;">
+			<p>div：style="font-size: 20px;"</p>
+			<p>文字大小<span style="font-size: 2em;">相对值em</span></p>
+			<p style="font-size: 150%;">文字大小<span>相对值%：20px * 150%</span></p>
+		</div>
+
+		<hr>
+		<h1>颜色</h1>
+		<ul>
+			<li>颜色名称</li>
+			<li>rgb(,,) 0-255 或者 0%-100%</li>
+			<li>16进制 #000000-#FFFFFF</li>
+		</ul>
+
+		<h1>文字样式</h1>
+		<p style="font-weight: 800; font-size: 14px;">文字样式font-weight</p>
+		<p>正常字体</p>
+		<p><i>斜体i标签</i></p>
+		<p><em>斜体em标签</em></p>
+		<p style="font-style: italic;">斜体italic、倾斜oblique</p>
+
+		<h1>font属性简写</h1>
+		<p>font：font-style font-variant font-weight font-size/line-height font-family</p>
+
+		<hr>
+		<h1>文本样式</h1>
+		<p>text-align 对块级元素起作用</p>
+		<p style="text-align: center;">style="text-align:
+			center;"文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式</p>
+		<p style="text-align: left;">文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式</p>
+		<p style="text-align: right;">文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式</p>
+		<p>文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式</p>
+		<div style="text-align: right;"><img src="../assets/001.png" alt=""></div>
+
+		<h1>行高</h1>
+		<p style="text-indent: 2em; line-height: 3.3em;">首行缩进：text-indent: 2em; 行高：line-height: 1.3em;
+			文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式式文本样式文本样式文本样式文本样式文本样式式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式文本样式</p>
+
+
+		<h1>vertical-align属性 只对行内元素起作用</h1>
+		<p>我是
+			<span style="vertical-align: bottom;">vertical-align: bottom</span>
+			<img src="../assets/001.png" alt="" style="vertical-align: bottom;">
+		</p>
+		<p>我是
+			<span style="vertical-align: top;">vertical-align: top</span>
+			<img src="../assets/001.png" alt="" style="vertical-align: top;">
+		</p>
+		<p>我是
+			<span style="vertical-align: middle;">vertical-align: middle</span>
+			<img src="../assets/001.png" alt="" style="vertical-align: middle;">
+		</p>
+		<p>我是
+			<span style="vertical-align: 20px;">vertical-align: middle</span>
+			<img src="../assets/001.png" alt="" style="vertical-align: 15px;">
+		</p>
+
+		<div style="display: table; height: 400px; width: 100%;border: 1px blue solid;">
+			<div style="display: table-cell; vertical-align: middle; text-align: center;">
+				<img src="../assets/001.png">
+				<h1>环境很好，来吧。</h1>
+				<h2>来都来了，坐下休息休息。</h2>
+			</div>
+		</div>
+
+		<hr>
+		<h1>其他属性</h1>
+		<p style="word-spacing: 20px;">style="word-spacing: 10px;" 针对单词。单 词 间 的 <strong>空格的</strong> 距 离</p>
+		<p style="letter-spacing: 20px;">style="letter-spacing: 10px;" 针对字母。<strong>字符间的</strong>距离</p>
+		<p style="text-transform: capitalize;">Hellow, i'm jianan.text-transform: capitalize;</p>
+		<p style="text-transform: uppercase;">Hellow, i'm jianan.text-transform: uppercase;</p>
+		<p style="text-transform: lowercase;">Hellow, i'm jianan.text-transform: lowercase;</p>
+		<p style="text-transform: none;">Hellow, i'm jianan.text-transform: none;</p>
+
+		<p style="text-decoration: underline;">line line的位置</p>
+		<p style="text-decoration: overline;">line line的位置 <span style="text-decoration: underline;">span标签style="text-decoration:
+				underline;"</span></p>
+		<p style="text-decoration: line-through;">line line的位置</p>
+		<p style="text-decoration: blink;">line line的位置</p>
+		<p style="text-decoration: none;">line line的位置</p>
+
+		<h1>示例</h1>
+		<p style="background-color: #ececec; height: 150px; text-align: center;line-height: 150px;">
+			<span style="font-size: 60px; color: darkred; font-weight: bold;">iOS</span>
+			&nbsp;&nbsp;
+			<span style="text-decoration: underline; color: gray; letter-spacing: 10px; vertical-align: 12px;">开发不香了</span>
+			<span style="font-size: 80px; font-style: italic;">！</span>
+		</p>
+	</body>
+</html>

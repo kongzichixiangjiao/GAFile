@@ -1,0 +1,11 @@
+/* list */
+.list { color: #f00; z-index: 3; }
+
+/* string */
+.string { background-image: hello hjn; background-image: hello; z-index: 9; background-image: "hello"; background-image: "HELLO HJN"; }
+
+/* map */
+.map { width: 100px; margin-left: 2px; }
+
+.div { width: 2.66667rem; }
+/*# sourceMappingURL=style.min.css.map */

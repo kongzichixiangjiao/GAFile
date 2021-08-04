@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>遍历Node-HTMLCollection</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<body>
+		<ui id="box">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ui>
+
+		<table border="1">
+			<tr id="tr">
+				<td id="td">第1行</td>
+				<td name="td">第2行</td>
+				<td>第3行</td>
+			</tr>
+		</table>
+
+		<img src="../../CSS/assets/001.png" alt="img1">
+		<img src="../../CSS/assets/001.png" alt="img2">
+
+		<form action="" method="">
+			<input type="text" name="" id="" value="用户名" />
+		</form>
+		<form action="" method="">
+			<input type="text" name="" id="" value="密码" />
+		</form>
+
+		<a href="#">忘记密码</a>
+		<a href="#">更多内容</a>
+
+		<select name="" id="select">
+			<option value="0">北京</option>
+			<option value="1">天津</option>
+			<option value="2">河北</option>
+		</select>
+
+		<p>DOM探索1</p>
+		<p>DOM探索2</p>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var scripts = document.scripts;
+				var links = document.links;
+				var cells = document.getElementById("tr").cells;
+				var imgs = document.images;
+				var forms = document.forms;
+				var options = document.getElementById("select").options;
+				var ps = document.getElementsByTagName("p");
+
+				// console.log(scripts);
+				// console.log(links);
+				console.log(cells);
+				// console.log(imgs);
+				// console.log(forms);
+				// console.log(options);
+				// console.log(ps);
+
+					// 有id="td"的返回
+					// 没有id="td"，返回name="td"de 
+				console.log(cells.namedItem('td'));
+			});
+		</script>
+	</body>
+</html>

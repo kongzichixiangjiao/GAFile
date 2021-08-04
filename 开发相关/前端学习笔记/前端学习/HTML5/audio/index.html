@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			audio {
+				width: 600px;
+				/* height: 400px; */
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 
+		 支持格式：MP3 wav ogg
+		 
+		 API事件
+		 play 
+		 pause
+		 duration
+		 currentTime
+		 src 
+		 volume
+		 controls
+		 muted 
+		 networkState
+		 
+		 currentSrc 
+		 ended 
+		 loop 
+		 playbackRate
+		 readyState
+		 timeupdate
+		 seeked
+		 seeking
+		 volumechange
+		 -->
+		<audio id="audioNode" controls autoplay loop muted>
+			<source src="test.mp3">
+			</source>
+			当前浏览器不支持audio
+		</audio>
+		<button class="playBtn">播放</button>
+		<button id="pauseBtn">暂停</button>
+
+		<script type="text/javascript">
+			var audioNode = document.getElementById('audioNode');
+			
+			
+			var playBtn = document.getElementsByClassName('playBtn')[0],
+				pauseBtn = document.getElementById('pauseBtn');
+
+			var myAudio = new Audio();
+			console.log(myAudio);
+			myAudio.src = "test.mp3";
+			myAudio.autoplay = true; // 谷歌、欧朋不能自动播放
+			// myAudio.muted = true; // 静音
+			myAudio.loop = true;
+			
+			playBtn.onclick = function() {
+				myAudio.play();
+			}
+			pauseBtn.onclick = function() {
+				myAudio.pause();
+			}
+		</script>
+	</body>
+</html>

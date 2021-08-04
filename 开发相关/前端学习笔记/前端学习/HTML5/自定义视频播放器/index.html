@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.outerNode {
+				width: 540px;
+				height: 332px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin: -166px 0 0 -270px;
+				border: 1px solid #000000;
+			}
+
+			.outerNode .videoNode {
+				width: 540px;
+				height: 305px;
+				float: left;
+				background-color: #00AAEE;
+
+			}
+
+			.outerNode .controlsNode {
+				width: 540px;
+				height: 27px;
+				background: url(videoimages/ctrs_bg.gif) repeat-x;
+				float: left;
+			}
+
+			.outerNode .controlsNode .playNode {
+				width: 15px;
+				height: 17px;
+				float: left;
+				margin: 6px 0 0 14px;
+				background: url(videoimages/playNode.png) no-repeat;
+				cursor: pointer;
+			}
+
+			.outerNode .controlsNode .pauseNode {
+				width: 15px;
+				height: 17px;
+				float: left;
+				margin: 6px 0 0 14px;
+				background: url(videoimages/pause.png) no-repeat;
+				cursor: pointer;
+			}
+
+			.outerNode .controlsNode .loadNode {
+				width: 267px;
+				height: 10px;
+				float: left;
+				position: relative;
+				margin: 9px 0 0 14px;
+				background: url(videoimages/load_bg.png);
+			}
+
+			.outerNode .controlsNode .loadNode .loadLeft {
+				height: 100%;
+				width: 3px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: url(videoimages/left_bg.png) no-repeat;
+			}
+
+			.outerNode .controlsNode .loadNode .loadRight {
+				height: 100%;
+				width: 3px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				background: url(videoimages/right_bg.png);
+			}
+
+			.outerNode .controlsNode .loadNode .crlNode {
+				width: 17px;
+				height: 17px;
+				background: url(videoimages/crl_bg.png);
+				position: absolute;
+				left: -8.5px;
+				top: -2.2px;
+
+				z-index: 3;
+			}
+
+			.outerNode .controlsNode .loadNode .lineNode {
+				width: 0;
+				height: 7px;
+				position: absolute;
+				left: 0;
+				top: 1px;
+				background: url(videoimages/line_bg.png) repeat-x;
+			}
+
+			.outerNode .controlsNode .loadNode .lineNode .lineRight {
+				width: 2px;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				background: url(videoimages/line_r_bg.png) no-repeat;
+			}
+
+			.outerNode .controlsNode .timeNode {
+				float: left;
+				width: 75px;
+				height: 10px;
+				margin: 9px 0 0 9px;
+			}
+
+			.outerNode .controlsNode .timeNode span {
+				font-size: 10px;
+				float: left;
+				line-height: 10px;
+				color: white;
+			}
+
+			.outerNode .controlsNode .volumeNode {
+				width: 17px;
+				height: 16px;
+				float: left;
+				margin: 5px 0 0 16px;
+				background: url(videoimages/volume_bg.png) no-repeat;
+			}
+
+			.outerNode .controlsNode .volumeLine {
+				height: 8px;
+				width: 61px;
+				float: left;
+				margin: 10px 0 0 4px;
+				background: url(videoimages/volumeLine_bg.png) repeat-x;
+				position: relative;
+			}
+
+			.outerNode .controlsNode .volumeLine .v_left {
+				width: 3px;
+				height: 8px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: url(videoimages/v_left.png);
+			}
+
+			.outerNode .controlsNode .volumeLine .v_right {
+				width: 3px;
+				height: 8px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				background: url(videoimages/v_right.png);
+			}
+
+			.outerNode .controlsNode .volumeLine .v_DragNode {
+				width: 15px;
+				height: 13px;
+				position: absolute;
+				left: 58.5px;
+				top: -3px;
+				background: url(videoimages/vo_d.png) no-repeat;
+				cursor: pointer;
+			}
+
+			.outerNode .controlsNode .fullNode {
+				float: left;
+				margin: 6px 0 0 30px;
+				width: 15px;
+				height: 17px;
+				background: url(videoimages/full_bg.png) no-repeat;
+				cursor: pointer;
+				transition: 0.2s;
+			}
+
+			.outerNode .controlsNode .fullNode:hover {
+				background: url(videoimages/full_hover_bg.png) no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="outerNode">
+			<!--  -->
+			<div class="videoWrapNode">
+				<video src="test.mp4" class="videoNode" poster="./videoimages/posterImg.JPG"></video>
+			</div>
+			<!-- 控制器 -->
+			<div class="controlsNode">
+				<div class="playNode"></div>
+				<div class="loadNode">
+					<div class="loadLeft"></div>
+					<div class="loadRight"></div>
+					<div class="crlNode"></div>
+					<div class="lineNode">
+						<div class="lineRight"></div>
+					</div>
+				</div>
+				<div class="timeNode">
+					<span class="now">00:00</span>
+					<span>-</span>
+					<span class="all">00:00</span>
+				</div>
+				<div class="volumeNode"></div>
+				<div class="volumeLine">
+					<div class="v_left"></div>
+					<div class="v_right"></div>
+					<div class="v_DragNode"></div>
+				</div>
+				<div class="fullNode"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var PlayNode = document.getElementsByClassName('playNode')[0],
+				VideoNode = document.getElementsByClassName('videoNode')[0],
+				FullNode = document.querySelector('.fullNode'),
+				allNode = document.querySelector('.all'),
+				nowNode = document.querySelector('.now'),
+				LineNode = document.querySelector('.lineNode'),
+				CrlNode = document.querySelector('.crlNode'),
+				LoadNode = document.querySelector('.loadNode'),
+				VDragNode = document.querySelector('.v_DragNode');
+
+			var PlayBtn = true;
+				
+			VideoNode.volume = 0.5;
+			
+			PlayNode.onclick = function() {
+				if (PlayBtn) {
+					VideoNode.play();
+				} else {
+					VideoNode.pause();
+				}
+				// 001
+				PlayBtn = !PlayBtn;
+				this.className = PlayBtn ? 'playNode' : 'pauseNode';
+
+				// 002
+				// this.classList.toggle('pauseNode');
+			}
+
+			FullNode.onclick = function() {
+				if (VideoNode.webkitRequestFullScreen) {
+					VideoNode.webkitRequestFullScreen();
+				} else if (VideoNode.mozRequestFullScreen) {
+					VideoNode.mozRequestFullScreen();
+				} else {
+					VideoNode.requestFullScreen();
+				}
+			}
+			VideoNode.src = "test.mp4";
+
+			VideoNode.addEventListener('canplay', function() {
+				var needTime = parseInt(VideoNode.duration);
+				var s = needTime % 60;
+				var m = needTime / 60;
+				var tiemNum = toDou(m) + ':' + toDou(s);
+				allNode.innerHTML = tiemNum;
+
+			}, false);
+
+			VideoNode.addEventListener('timeupdate', function() {
+
+				LineNode.style.width = VideoNode.currentTime / VideoNode.duration * 100 + '%';
+
+				CrlNode.style.left = LineNode.offsetWidth - 8.5 + 'px';
+
+				var needTime = parseInt(VideoNode.currentTime);
+				var s = needTime % 60;
+				var m = needTime / 60;
+				var tiemNum = toDou(m) + ':' + toDou(s);
+
+				nowNode.innerHTML = tiemNum;
+			})
+
+			function toDou(t) {
+				if (t < 1) {
+					return '00';
+				}
+				return t < 10 ? '0' + t : t;
+			}
+
+			CrlNode.onmousedown = function(e) {
+				VideoNode.pause();
+
+				var ev = e || event;
+				var l = ev.clientX - this.offsetLeft;
+
+				document.onmousemove = function(e) {
+					var ev = e || event;
+					var needX = ev.clientX - l;
+					var maxX = LoadNode.offsetWidth;
+					needX = needX < -8.5 ? -8.5 : needX;
+					needX = needX > maxX ? maxX - 8.5 : needX;
+					CrlNode.style.left = needX + 'px';
+
+					LineNode.style.width = (CrlNode.offsetLeft + 9) / LoadNode.offsetWidth * 100 + '%';
+				}
+				document.onmouseup = function(e) {
+
+					VideoNode.currentTime = VideoNode.duration * ((CrlNode.offsetLeft + 9) / LoadNode.offsetWidth);
+
+					if (PlayBtn == false) {
+						PlayNode.className = 'pauseNode';
+						VideoNode.play();
+					} else {
+						PlayNode.className = 'playNode';
+						VideoNode.pause();
+					}
+
+					document.onmousemove = document.onmouseup = null;
+				}
+				return false;
+			}
+			VDragNode.onmousedown = function(e) {
+
+				var ev = e || event;
+				var l = ev.clientX - this.offsetLeft;
+				console.log(l);
+				document.onmousemove = function(e) {
+					var ev = e || event;
+					var needX = ev.clientX - l;
+					var maxX = VDragNode.parentNode.offsetWidth;
+
+					needX = needX < -2.5 ? -2.5 : needX;
+					needX = needX > maxX ? maxX - 2.5 : needX;
+					var volume = (VDragNode.offsetLeft + 2) / VDragNode.parentNode.offsetWidth;
+					volume = volume < 0 ? 0 : volume;
+					VideoNode.volume = volume > 1 ? 1 : volume;
+					
+					VDragNode.style.left = needX + 'px';
+				}
+				document.onmouseup = function() {
+					document.onmousemove = document.onmouseup = null;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>

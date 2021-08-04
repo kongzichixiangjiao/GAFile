@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" href="move.css">
+		<style type="text/css">
+			.transition {
+				-o-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-webkit-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+
+			.fadeOut {
+				opacity: 0 !important;
+				visibility: hidden !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slider">
+			<div id="box" class="box"></div>
+			<div id="box2" class="box"></div>
+		</div>
+		<div><button id="back-btn" class="btns">&lt;</button><button id="go-btn" class="btns">&gt;</button></div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 如果cdn加载jquery失败 加载本地js
+			window.jQuery || document.write('<script type="text/javascript" src="../../jQuery/jquery-3.5.1/jquery-3.5.1.js">')
+		</script>
+		<script src="../js/transition.js"></script>
+		<script src="../js/showHide.js"></script>
+
+		<script src="./move.js">
+
+		</script>
+		<script type="text/javascript">
+			var $box = $('#box'),
+				$box2 = $('#box2'),
+				$goBtn = $('#go-btn'),
+				$backBtn = $('#back-btn');
+
+
+			$box.on('move moved', function(e, $elem) {
+				console.log(e.type);
+				console.log($elem);
+			})
+			$box.move({
+				css3: true,
+				js: false
+			})
+			$box2.move({
+				css3: true,
+				js: false
+			})
+			$goBtn.on('click', function() {
+				// $box.move('to', 100, 50);
+				$box.move('x', 200);
+				$box2.move('x', 400);
+			});
+
+			$backBtn.on('click', function() {
+				// $box.move('to', 0, 20);
+				$box.move('x', 0);
+				$box2.move('x', 200);
+
+			})
+		</script>
+	</body>
+</html>

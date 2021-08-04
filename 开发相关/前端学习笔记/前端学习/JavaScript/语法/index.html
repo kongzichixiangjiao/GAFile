@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript</title>
+		<script src="">
+
+		</script>
+		<script type="text/javascript">
+
+		</script>
+	</head>
+	<body>
+
+		<script type="text/javascript">
+			/* 语法和变量 */
+			// 1、省略var声明的变量时全局变量
+			// 2、不推荐省略var操作符来定义全局变量
+			var name_01;
+			name_01 = "marry";
+
+			var age = 30;
+			var email = "marry@sina.com.cn";
+
+			var id = "20020910003",
+				sex = '男',
+				address;
+
+			/* 数据类型 */
+			console.log("typeof()");
+			// typeof();
+			// string、number、boolean、object、undefined、function
+			console.log(typeof(age));
+
+			/* null */
+			// 1、null值表示一个空对象指针
+			// 2、如果定义的变量准备在将来用于保存对象，那么最好将变量初始化为null而不是其他值。
+			// 说明：undefined值是派生自null值的，所以undefined==null的返回结果是true
+
+			console.log("Number");
+			console.log(typeof(age));
+			/* Number */
+			// Number: 表示整型和浮点型
+
+			console.log("NaN");
+			console.log(typeof(age - "abc"));
+			/* NaN */
+			// NaN: 即非数值（Not a Number）是一个特殊的数值
+			// 说明：
+			// 1、任何涉及NaN的操作（如NaN/10）都会返回NaN。
+			// 2、NaN和任何值都不相等，包括NaN本身。
+
+			console.log("isNaN");
+			/* isNaN */
+			console.log(isNaN(email)); // true
+			console.log(isNaN(12)); // false
+			console.log(isNaN("12")); // false
+			/* isNaN */
+			// 检测n是否是"非数值"
+			// 说明：isNaN()对接收的数值，先尝试转换为数值，再检测是否为非数值。
+
+			/* 类型转换 */
+			// Number
+			console.log("类型转换");
+			console.log(typeof(id));
+			console.log(typeof(Number(id)));
+			console.log(Number(name_01)) // NaN
+			console.log(Number(name)) // 0
+
+			// parseInt 提取数字，必须以数字开头
+			var topValue = "23px";
+			console.log(parseInt(topValue)); // 23
+			console.log(parseInt("023")); // 23
+			console.log(parseInt("cc99")); // NaN 
+			console.log(parseInt("0xf", 16)); // 15 16进制转换成10进制
+			console.log(parseInt("0101", 2)); // 5 2进制转换成10进制
+
+			// parseFloat 从第一个字符开始解析每一个字符，直至遇见一个无效的浮点数字符位置。
+			// 说明：除了第一个小数点有效外，parseFloat()与parseInt()的第二个区别在于它始终都会忽略前导的零。
+			console.log(parseFloat("12.34px")); // 12.34
+			console.log(parseFloat("12.34.44px")); // 12.34
+			console.log(parseFloat("0.12.34abc")); // 0.12
+			console.log(parseFloat("abc0.12")); // NaN
+
+			/* String */
+			// String类型用于表示由零个或多个16位Unicode字符组成的字符序列。
+
+			/* str.toString() */
+
+			console.log("String()")
+			/* String() */
+			// 不知道转换的值是不是null或者undefined的情况下，还可以使用String()函数，它能够将任何类型的值转换为字符串。
+			var ids = 4455;
+			console.log(ids.toString());
+			console.log(typeof(ids.toString()));
+
+			/* Boolean */
+			// true / false 
+			var x = 1;
+			console.log(Boolean(x)); // true  只有0的时候才是false
+			console.log(Boolean('')); // false 
+			console.log(Boolean(' ')); // true 
+			var y;
+			console.log(Boolean(y)); // false
+
+			/* 算数操作符 */
+			var num1 = 10;
+			var num2 = 20;
+			console.log(num1++ - num2);
+			console.log(num1++);
+
+			/* 逻辑操作符 */
+			// && || ！
+
+			/* if-else */
+			var age1 = 15;
+			if (age1 > 12 && age1 < 20) {
+
+			} else {
+
+			}
+
+			console.log(parseInt('abc123')); // NaN
+			console.log(typeof(parseInt('abc123'))); // number
+
+			/* switch */
+			var date = new Date()
+			var week = date.getDay();
+			switch (week) {
+				case 1:
+					break;
+				case 2:
+					break;
+				default:
+					break;
+			}
+
+			/* for */
+			console.log('for');
+			for (var i = 1; i < 3; i++) {
+				console.log(i);
+			}
+
+			console.log("for in")
+			var arr = new Array();
+			arr.push('1');
+			arr.push('2');
+			arr.push('3');
+
+			for (let a in arr) {
+				console.log("----");
+				console.log(a);
+				console.log(typeof(a));
+			}
+
+			/* while */
+			console.log('while');
+			var i = 1;
+			while (i <= 5) {
+				console.log(i);
+				i += 1;
+			}
+			console.log('do-while');
+			do {
+				console.log(i);
+				i += 1;
+			} while (i < 5);
+
+			/* break continue*/
+
+			/* 函数 */
+			console.log("函数");
+
+
+			console.log("func");
+
+			function func() {
+				console.log('function');
+			}
+			func();
+
+			console.log("add");
+
+			function add(num1, num2) {
+				console.log(num1 + num2);
+				return num1 + num2;
+			}
+			add(2, 3);
+
+			console.log("inner");
+
+			function inner(num1) {
+				console.log(arguments.length);
+				console.log(arguments[0]);
+				console.log(arguments[5]);
+				console.log(num1);
+				arguments[0] = 10;
+				console.log(arguments[0]);
+				console.log(num1);
+			}
+			inner(1, 2, 3);
+
+			/* 数组 */
+			console.log("数组");
+			var colors = new Array(3); // 一个数值表示长度
+			var nums = new Array(2, 4, 5, 6, 7);
+			var colors1 = ["red", "yellow"];
+			var infos = [6, "hjn", true];
+			console.log(colors.length);
+
+			console.log("push");
+			infos.push("新增");
+			console.log(infos);
+
+			console.log("pop");
+			infos.pop();
+			console.log(infos);
+
+			console.log("unshift")
+			infos.unshift(99, 11);
+			console.log(infos);
+
+			console.log("shift");
+			infos.shift();
+			console.log(infos);
+
+			console.log("join：数组转换成字符串");
+			var nums1 = [2, 7, 1, 0, 3, 3, 5];
+			var str = nums1.join();
+			console.log(str);
+			var str2 = nums1.join('/');
+			console.log(str2);
+
+			console.log('revers');
+			console.log(nums1.reverse());
+
+			console.log("sort");
+			console.log(nums1.sort());
+			nums1.sort(function(a, b) {
+				return a - b;
+			})
+			console.log(nums1);
+			nums1.sort(function(a, b) {
+				return b - a;
+			})
+			console.log(nums1);
+
+			console.log("splice（index, count）");
+			console.log("splice 删除")
+			var arr1 = ['1', '2', '3', '4'];
+			var delArr = arr1.splice(2, 1);
+			console.log(arr1);
+			console.log(delArr);
+
+			console.log("splice（index, count, item0, item1...）");
+			console.log("splice 插入")
+			var insertArr = arr1.splice(2, 0, "z", "z", "z")
+			console.log(arr1);
+			console.log(insertArr);
+
+			console.log("splice（index, count, item0, item1...）");
+			console.log("splice 替换")
+			var replaceArr = arr1.splice(0, 1, '替换了');
+			console.log(arr1);
+			console.log(replaceArr);
+
+
+			/* indexOf(查找元素，从哪个索引开始) */
+			var nums2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+			var pos = nums.indexOf(7, 3);
+			console.log(pos); // 4
+
+			/* lastIndexOf() */
+			console.log(nums2.lastIndexOf(1)); // 0
+
+
+			/* 字符串 */
+			var str = "hello world!";
+			console.log(str[0]); // h
+			console.log(str.charAt(1)); // e
+			console.log(str.charCodeAt(1)); // 101
+			console.log(str.indexOf("h")); // 0
+			console.log(str.indexOf(" ")); // 5
+			console.log(str.indexOf("el")); // 1 只检测第一个字符
+
+			console.log("slice(start, count)");
+			console.log(str.slice(0, 5)); // hello 
+			console.log(str.slice(-1)); // !
+			console.log(str.length); // 12
+			// slice(-6, -2)相当于slice(12-6, 12-2);
+			console.log(str);
+			console.log(str.slice(-6)); // world!
+			console.log(str.slice(-6, -1)); // world
+			// substring()和slice()相同,当substring()当参数为负数时，自动转为0。substring()较小的数作为开始位置，将较大的数作为结束位置
+			console.log(str.substring(0, 5)); // hello 
+			console.log(str.substring(-7, 5)); // 相当于substring(0, 5) // world
+			console.log(str.substring(2, -5)); // 相当于substring(0, 2); // he
+
+			console.log("substr(start, len)");
+			console.log(str.substr(0, 5)); // hello 
+
+
+			var url = "http://baidu.com/aa.mp3";
+
+			function getFileFormate(url) {
+				var pos = url.lastIndexOf(".");
+				return url.substr(pos);
+			}
+			console.log(getFileFormate(url));
+
+			console.log("stringObject.split(separator)");
+			var str22 = 'welcome-to-bj';
+			console.log(str22.split('-'));
+
+			console.log('stringObject.replace(regexp/substr, replacement)');
+			var tel = '010-54343434,400-100-0909';
+			console.log(tel.replace(',', '-替换内容-'));
+
+			console.log('toUpperCase');
+			console.log("hello".toUpperCase());
+			console.log("hello".charAt(2).toUpperCase());
+
+			console.log('toLowerCase');
+			console.log('Hello'.toLowerCase());
+
+			function camelBack(str) {
+				var arr = str.split("-"),
+					newStr = arr[0];
+				for (var i = 1; i < arr.length; i++) {
+					var word = arr[i];
+					newStr += word.charAt(0).toUpperCase() + word.substr(1);
+					console.log(newStr);
+				}
+				return newStr;
+			}
+			console.log(camelBack("border-left-color"));
+
+			/* Math */
+			console.log('');
+			console.log('Math.max');
+			console.log(Math.max(1, 2, 0, 2, 3, 9, 5));
+
+			console.log('Math.min');
+			console.log(Math.min(1, 2, 4, -1, 8));
+
+			console.log('Math.ceil 向上取整');
+			console.log(Math.ceil(188.2)); // 189
+			console.log(Math.ceil(188.9)); // 189
+
+			console.log('Math.floor 向下取整');
+			console.log(Math.floor(188.2)); // 188
+			console.log(Math.floor(188.9)); // 188
+
+			console.log('Math.round 四舍五入取整');
+			console.log(Math.round(188.2)); // 188
+			console.log(Math.round(188.9)); // 189
+
+			console.log('Math.abs 绝对值');
+			console.log(Math.abs(-2)); // 2
+
+			console.log('Math.random 随机值');
+			console.log(Math.random());
+			console.log(Math.random());
+
+			var n = 1;
+			var m = 100;
+			var random = Math.floor(Math.random() * (m - n + 1) + n);
+			console.log(random);
+
+			/* Date */
+			var today = new Date(),
+				year = today.getFullYear(),
+				month = today.getMonth(),
+				date = today.getDate(),
+				week = today.getDay(),
+				hours = today.getHours(),
+				minutes = today.getMinutes(),
+				seconds = today.getSeconds(),
+				times = today.getTime();
+		</script>
+	</body>
+</html>

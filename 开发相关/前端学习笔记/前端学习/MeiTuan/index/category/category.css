@@ -1,0 +1,33 @@
+/*
+ * @Author: houjianan 
+ * @Date: 2020-11-23 13:50:33 
+ * @Last Modified by: houjianan
+ * @Last Modified time: 2020-11-23 13:52:21
+ */
+
+.category-content {
+    padding-bottom: 0.266667rem;
+
+    /* display: flex;
+    flex-wrap: wrap; */
+
+}
+
+.category-content .category-item {
+    float: left;
+    width: 25%;
+    padding-top: 0.373333rem;
+    font-size: 0.346667rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-content .item-icon {
+    width: 1.253333rem;
+    
+}
+.category-content .item-name {
+    margin-top: 0.373333rem;
+}

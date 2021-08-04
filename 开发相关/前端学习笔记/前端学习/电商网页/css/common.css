@@ -1,0 +1,48 @@
+/* 公共样式 */
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.link {
+	color: #4d555d;
+}
+
+.link:hover {
+	color: #f01414;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+
+}
+
+.transition {
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.fadeOut {
+	opacity: 0 !important;
+	visibility: hidden !important;
+}
+
+.slideUpDownCollapse {
+	/* #box height560 id权重比class高 */
+	height: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.slideLeftRightCollapse {
+	width: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}

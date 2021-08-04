@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>DOM-Create</title>
+		<script src="domReady.js">
+		</script>
+
+	</head>
+	<body>
+		<ul id="myList"></ul>
+		<article>
+			You are my sunshine.
+		</article>
+		<div id="content"></div>
+		<div id="content1"></div>
+		<div id="content2"></div>
+		<div id="content3"></div>
+		<script type="text/javascript">
+			// 只有IE会执行if下面的代码
+			// if (!
+			// 	/*@cc_on!@*/
+			// 	0) return;
+			(function() {
+				var e = "abbr, article, aside, audio, canvas, datalist, details".split(',');
+				var i = e.length;
+				while (i--) {
+					document.createElement(e[i]);
+				}
+			})
+		</script>
+		<script>
+			myReady(function() {
+				// console.log(document.getElementsByName("ul"));
+				// // 获取
+				// var ul = document.getElementById("myList");
+				// console.log(ul);
+				// // 创建
+				// var li = document.createElement("li");
+
+				// var txt = document.createTextNode("Item");
+				// li.appendChild(txt);
+				// // 装填
+				// ul.appendChild(li);
+
+				// 创建注释结点<!--A comment-->
+				var comment = document.createComment("A comment");
+				// 创建文档片段
+				var fragment = document.createDocumentFragment();
+				var ul = document.getElementById("myList");
+				var li = null;
+				for (var i = 0; i < 3; i++) {
+					li = document.createElement("li");
+					li.appendChild(document.createTextNode("Item" + (i + 1)));
+					fragment.appendChild(li);
+				}
+				ul.appendChild(fragment);
+				document.body.insertBefore(comment, document.body.firstChild);
+			});
+
+			myReady(function() {
+				var content = document.getElementById("content");
+				var str = "<p>This is a <strong>paragraph</strong> with a list following it.</p>" +
+					"<ul>" + "<li>Item 1</li>" +
+					"<li>Item 2</li>" +
+					"<li>Item 3</li>" +
+					"</ul>";
+
+				console.log(str);
+
+				content.innerHTML = str
+			})
+			myReady(function() {
+				// 为script标签添加defer属性
+				// script标签要在有作用域的元素之后（如：input）
+				var content1 = document.getElementById("content1");
+				var str = "<input type=\"hidden\"><script defer>alert('--');<\/script>";
+				content1.innerHTML = str;
+			})
+			myReady(function() {
+				var content2 = document.getElementById("content2");
+				// "_<style...
+				var str = "_<style type=\"text/css\">body {background-color: yellow;}</style>";
+				content2.innerHTML = str;
+				content2.removeChild(content2.firstChild);
+			})
+			/* outerHTML */
+			// myReady(function() {
+			// 	var content = document.getElementById("content");
+			// 	console.log(content.outerHTML); /*<div id="content"><p>This is a <strong>paragraph</strong> with a list following it.</p><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul></div>*/
+			// 	content.outerHTML = "<p>This is a paragraph.</p>";
+			// })
+
+			// firefox不支持innerText 支持textContent
+			myReady(function() {
+				var content = document.getElementById("content");
+				// console.log(content.innerText);
+				// console.log(content.textContent);
+
+				// content.innerText = "<p>New This is a paragraph.</p>";
+				// content.textContent = "<p>New This is a paragraph.</p>";
+
+				function getInnerText(element) {
+					return (typeof element.textContent == "string") ? element.textContent : element.innerText;
+				}
+
+				function setInnerText(element, text) {
+					if (typeof element.textContent == "string") {
+						element.textContent = text;
+					} else {
+						element.innerText = text;
+					}
+				}
+				setInnerText(content, "哈喽啊 ，丹东海鲜香。")
+				console.log(getInnerText(content));
+			})
+
+			myReady(function() {
+
+			})
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册、登录</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
+	</head>
+	<body>
+		<div class="register">
+			<p class="title">
+				<span>登录</span>
+				<span class="current">注册</span>
+			</p>
+			<div class="form">
+				<div>
+					<span>+86</span>
+					<input type="text" name="user" id="user" placeholder="请输入手机号" autocomplete="off" />
+					<i class="ok" id="user_icon"></i>
+					<p class="info" id="user_info"></p>
+				</div>
+				<div>
+					<input type="password" name="pwd" id="pwd" placeholder="请设置密码">
+					<i class="no"></i>
+					<p class="info" id="pwd_info">密码输入错误</p>
+				</div>
+				<p class="button">
+					<a href="javascript:void(0)" id="signup_btn" class="btn">登录</a>
+				</p>
+			</div>
+		</div>
+		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var user = document.getElementById("user"),
+				pwd = document.getElementById("pwd"),
+				signup = document.getElementById("signup_btn"),
+				userInfo = document.getElementById("user_info"),
+				userIcon = document.getElementById("user_icon");
+
+			function checkUser() {
+				var userVal = user.value,
+					userReg = /^1[3578]\d{9}$/;
+				if (!(userReg.test(userVal))) {
+					userInfo.innerHTML = "无效手机号码";
+					userIcon.className = "no";
+				} else {
+					userInfo.innerHTML = "";
+					userIcon.className = "";
+
+					// 发请求
+					$.ajax({
+						url: '',
+						data: {
+							username: userVal
+						},
+						success: function(data) {
+							if (data.code == 1) {
+								userIcon.className = 'ok';
+								userInfo.innerHTML = "";
+							} else if (data.code == 0) {
+								userIcon.className = 'no';
+								userInfo.innerHTML = data.msg;
+							} else {
+								userInfo.innerHTML = "检测失败，请重试...";
+							}
+						}
+					})
+				}
+			}
+
+			function checkPwd() {
+
+			}
+			user.addEventListener("blur", checkUser, false);
+			pwd.addEventListener("blur", checkPwd, false);
+		</script>
+	</body>
+</html>

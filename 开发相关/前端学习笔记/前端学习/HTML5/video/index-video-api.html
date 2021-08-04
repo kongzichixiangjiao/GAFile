@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<video id="myVideo" width="400" height="200" controls>
+			<source src="test.mp4" type="video/mp4">
+			</source>
+			<source src="test.ogv" type="video/ogg">
+			</source>
+			<source src="test.webm" type="video/webm">
+			</source>
+			<object width="" height="" type="application/x-shockwave-flash" data="test.swf">
+				<param name="movie" value="test.swf" />
+				<param name="flashvars" value="autostart=true&amp;file=test.swf" />
+			</object>
+			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="test.webm">下载视频</a>
+		</video>
+		<button id="playBtn">开始播放</button>
+		<button id="pauseBtn">暂停播放</button>
+		<button id="currentTimeBtn">当前视频播放长度</button>
+		<button id="speedBtn">快进</button>
+		<button id="valumeBtn">随机声音</button>
+		<button id="fullscreenBtn">全屏</button>
+<button id="reloadBtn">刷新视频播放器</button>
+		<!--
+		 video API事件 
+		 play  在chrome下不允许带声音的播放
+		 pause
+		 duration
+		 currentTime
+		 src 
+		 volume
+		 controls 设置视频是否显示控件
+		 muted 设置视频是否静音
+		 networkState 视频当前网络状态
+		 
+		 currentSrc 返回当前音视频的URL
+		 ended 返回音视频的播放是否结束
+		 loop 循环播放
+		 playbackRate 设置或返回视频播放的速度
+		 readyState 属性返回视频的当前就绪状态
+		 timeupdate当目前的播放位置已更改时
+		 seeked当用户 已 移动、跳转到视频中的新位置时
+		 seeking当用户 开始 移动、跳转到视频中的新位置时
+		 valumechange 音量更改时
+		 
+		 requestFullscreen 全屏
+		 load 从新加载视频资源
+		 canplay 视频已经准备好开始播放
+		 -->
+		<script type="text/javascript">
+			var VideoNode = document.getElementById('myVideo');
+
+			var playBtn = document.getElementById('playBtn'),
+				pauseBtn = document.getElementById('pauseBtn'),
+				speedBtn = document.getElementById('speedBtn'),
+				currentTimeBtn = document.getElementById('currentTimeBtn');
+			playBtn.onclick = function() {
+				VideoNode.play();
+			}
+			pauseBtn.onclick = function() {
+				VideoNode.pause();
+			}
+			console.log("没有加载完查看-视频总时长 = ", VideoNode.duration + "秒");
+
+			setTimeout(function() {
+				console.log("加载完查看-视频总时长 = ", VideoNode.duration + "秒");
+			}, 2000);
+			currentTimeBtn.onclick = function() {
+				console.log("当前视频播放长度 = ", VideoNode.currentTime + "秒");
+			}
+			speedBtn.onclick = function() {
+				// 快进三秒
+				VideoNode.currentTime = VideoNode.currentTime + 3;
+				console.log("快进之后视频播放长度 = ", VideoNode.currentTime + "秒");
+			}
+
+			// 设置视频播放源
+			VideoNode.src = 'test.mp4';
+			console.log("视频源 = ", VideoNode.src);
+
+
+			// 视频声音 0-1
+			VideoNode.volume = 0.5;
+
+			// 设置静音
+			VideoNode.muted = true;
+
+			console.log("网络情况：", VideoNode.networkState);
+			setTimeout(function() {
+				// 1获取到资源 未使用网络
+				// 2正在下载资源
+				// 3没找到网络资源
+				console.log("网络情况：", VideoNode.networkState);
+			}, 200)
+
+			// 视频控制
+			VideoNode.controls = true;
+
+			// 视频播放结束
+			VideoNode.addEventListener('ended', function() {
+				console.log("视频播放是否结束", VideoNode.ended);
+			})
+			VideoNode.addEventListener('ended', function() {
+				console.log("视频播放是否结束", VideoNode.ended);
+			})
+
+			// 循环播放
+			VideoNode.loop = false;
+
+			// 播放速度
+			console.log(VideoNode.playbackRate);
+			VideoNode.playbackRate = 0.5;
+
+			// 视频准备信息
+			// 0 没有关于视频就绪的信息
+			// 1 有数据但不是快不足以支撑了
+			// 2 当前数据可以用，但是没有数据播放下一帧了
+			// 3 数据正在缓冲
+			// 4 可用数据足以开始播放视频
+			console.log(VideoNode.playbackRate);
+
+
+			VideoNode.addEventListener('timeupdate', function() {
+				console.log("当前播放时间已经更改", VideoNode.currentTime);
+			})
+
+			// onseeked
+			VideoNode.onseeked = function() {
+				console.log("onseeked");
+			}
+			// onseeking
+			VideoNode.onseeking = function() {
+				console.log("onseeking");
+			}
+
+			VideoNode.onvolumechange = function() {
+				console.log("声音发生改变");
+			}
+
+			document.getElementById('valumeBtn').onclick = function() {
+				VideoNode.volume = Math.random();
+			}
+
+			document.getElementById('fullscreenBtn').onclick = function() {
+				if (VideoNode.webkitRequestFullScreen) {
+					VideoNode.webkitRequestFullscreen();
+				} else if (VideoNode.mozRequestFullScreen) {
+					VideoNode.mozRequestFullscreen();
+				} else {
+					VideoNode.requestFullscreen();
+				}
+			}
+			
+			// 改变视频来源之后从新load
+			document.getElementById('reloadBtn').onclick = function() {
+				VideoNode.load();
+			}
+			
+			VideoNode.addEventListener('canplay', function() {
+				console.log("视频已经加载完成");
+				console.log("canplay-加载完查看-视频总时长 = ", VideoNode.duration + "秒");
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>边框、圆角、阴影</title>
+		<style>
+			
+			.borderDiv {
+				width: 800px;
+				height: 300px;
+				border: 5px solid #008000;
+				margin: 0 auto;
+				border-radius: 40px 10px;
+			}
+			.shadowDiv {
+				width: 800px;
+				height: 300px;
+				background-color: #00AAEE;
+				border: 5px solid #008000;
+				margin: 0 auto;
+				/* 外阴影 */
+				/* x: 50
+				y: 30
+				模糊: 10
+				扩展(四个方向扩展20): 20 */
+				/* inset 加inset是内阴影,不加是外阴影 */
+				box-shadow: 50px 30px 10px 20px yellow inset;
+			}
+
+			div {
+				position: relative;
+				width: 500px;
+				height: 300px;
+				border: 1px solid #0000FF;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				-ms-border-radius: 50%;
+				-o-border-radius: 50%;
+				border-radius: 50%;
+				font-size: 24px;
+				font-weight: bold;
+				text-align: center;
+				line-height: 300px;
+			}
+
+			div:nth-of-type(3):before,
+			div:nth-of-type(3):after {
+				position: absolute;
+				content: "";
+				width: 50px;
+				height: 50px;
+				display: block;
+				border: 1px solid #0000FF;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				-ms-border-radius: 50%;
+				-o-border-radius: 50%;
+				border-radius: 50%;
+			}
+			div:nth-of-type(3):before {
+				width: 50px;
+				height:50px;
+				bottom: -25px;
+				right: 25px;
+			}
+			div:nth-of-type(3):after {
+				width: 20px;
+				height:20px;
+				bottom: -75px;
+				right: 0px;
+			}
+			/* border-imaage-* */
+			.borderImageDiv {
+				width: 853px;
+				height:392px;
+				border: 50px solid;
+				border-image-source: url(../../CSS/assets/001.png);
+				border-image-slice: 10%; /* 100%相当于fill */
+				/* border-image-slice和border-image-width配合使用 */
+				border-image-width: 5%;
+				/* border-image-outset 向外扩张多少 */
+				border-image-outset: 10px;
+				/* border-image-repeat: stretch|repeat|round|initial|inherit */
+				border-image-repeat: stretch;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="borderDiv"></div>
+		<div class="shadowDiv"></div>
+		<div>努力学习！</div>
+		<div class="borderImageDiv"></div>
+	</body>
+</html>

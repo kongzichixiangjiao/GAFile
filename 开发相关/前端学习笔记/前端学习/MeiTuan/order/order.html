@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- /*
+ * @Author: houjianan 
+ * @Date: 2020-11-23 21:24:55 
+ * @Last Modified by: houjianan
+ * @Last Modified time: 2020-11-23 21:25:44
+ */ -->
+<html lang="en">
+
+<head>
+    <title>订单列表</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/generalFit.js"></script>
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+    <link rel="stylesheet" href="./header/header.css">
+    <link rel="stylesheet" href="./contentList/contentList.css">
+</head>
+
+<body>
+    <!-- 头部开始 -->
+    <div class="header">订单</div>
+    <!-- 头部结束 -->
+    <!-- 订单列表开始 -->
+    <div class="list-wrap">
+        <!-- <div class="order-item">
+            <div class="order-item-inner">
+                <img class="item-img" src="$poi_pic" >
+                <div class="item-right">
+                    <div class="item-top">
+                        <p class="order-name one-line">$poi_name</p>
+                        <div class="arrow"></div>
+                        <div class="order-state">$status-description</div>
+                    </div>
+                    <div class="item-bottom">$getProduct
+                        <div class="product-item">item.product_name
+                            <div class="p-count">x + item.product_count</div>
+                        </div>
+                        <div class="product-item">
+                            <span>...</span>
+                            <div class="p-total-count">总计data.product_count个菜，实付
+                                <span class="total-price">data.total</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            $getComment
+            <div class="evaluation">
+                <div class="evaluation-btn"></div>
+            </div>
+        </div> -->
+        <div class="order-list"></div>
+        <div class="loading">加载中...</div>
+    </div>
+    <!-- 订单列表结束 -->
+    <!-- 底部栏开始 -->
+    <div class="bottom-bar"></div>
+    <!-- 底部栏结束 -->
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../common/bottomBar/bottomBar.js"></script>
+    <script src="../tools/Loading.js"></script>
+    <script src="./contentList/contentList.js"></script>
+</body>
+
+</html>

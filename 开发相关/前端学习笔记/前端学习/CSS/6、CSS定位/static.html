@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Static</title>
+		<style type="text/css">
+			.block, .block1 {
+				position: relative;
+
+				top: 10px;
+
+				width: 50px;
+				height: 50px;
+
+				line-height: 50px;
+				text-align: center;
+				border: 2px solid blue;
+				box-sizing: border-box;
+				/* box-sizing
+				 boder-box：通过从已经设定的宽度和高度中
+				 分别减去边框和内边距之后得到的值，
+				 才是内容的宽度和高度
+				 content-box：在宽度和高度之外绘制元素的内边距和边框（默认）*/
+			}
+
+			/* .block:nth-child(2) {
+				position: static;
+				border: 2px solid red;
+			} */
+			.block1 {
+				position: static; /* 不会便宜10px */
+				border: 2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>static</h1>
+
+		<div class="block">
+			A
+		</div>
+		<!-- <p>
+			<span>lan</span><a href="">行内元素，使用static，自然顺序</a>
+		</p> -->
+		<div class="block1">
+			B
+		</div>
+		<div class="block">
+			C
+		</div>
+		<div class="block">
+			D
+		</div>
+		<p><strong>static特点：</strong></p>
+		<p>1、忽略top、bottom、left、right或者z-index声明</p>
+		<p>2、两个相邻的元素如果都设置了外边距，那么最终外边距=两者外边距中最大的</p>
+		<p>3、具有固定widht和height值的元素，如果把左右外边距设置为auto，则左右外边距会自动扩大占满剩余宽度。造成的效果就是这个块水平居中</p>
+		
+		<hr >
+		
+		<h1>relative：可定位的祖先元素（子元素相对于它进行定位）</h1>
+		
+		
+		 
+		
+		<br><br><br><br><br><br><br><br><br><br>
+	</body>
+</html>

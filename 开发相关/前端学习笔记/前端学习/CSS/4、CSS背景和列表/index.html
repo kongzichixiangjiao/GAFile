@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>背景样式</title>
+		<style type="text/css">
+			div {
+				width: 300px;
+				height: 300px;
+				background-color: gray;
+				padding: 20px;
+				margin: 20px;
+				border: 20px #00AAEE solid;
+				/* 不设置颜色 边框的颜色会和元素的文本颜色一致 */
+			}
+
+			.imgDiv {
+				width: 300px;
+				height: 1000px;
+				background-image: url(../assets/001.png);
+				padding: 20px;
+				margin: 20px;
+				border: 20px #00AAEE dashed;
+				background-color: green;
+				background-repeat: no-repeat;
+				/* repeat、no-repeat、repeat-x、repeat-y*/
+				background-attachment: fixed;
+				/* 默认scroll */
+			}
+
+			.imgPostionDiv {
+				width: 300px;
+				height: 300px;
+				background-image: url(../assets/001.png);
+				padding: 20px;
+				margin: 20px;
+				border: 20px #00AAEE dashed;
+				background-color: green;
+				background-repeat: no-repeat;
+				/* background-position: bottom; */
+				/* top、bottom、center、right、left */
+				/* background-position: 50px 100px; */
+				background-position: 10% 10%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>背景颜色</h1>
+		background-color默认值transparent
+		<br>
+		transparent：全透明黑色，类似rgba(0,0,0,0)
+		<br>
+		背景区包括内容、内边距和边框、不包含外边距
+		<br>
+
+		<div>
+			background-color
+		</div>
+
+		<h1>背景图片</h1>
+		url
+		<br>
+		元素的背景占据了元素的全部尺寸，包括内边距和边框，但不包括外边距
+		<br>
+		默认地，北京图像位于元素的左上角，并在水平和垂直方向上重复。
+
+		<div class="imgDiv">
+
+		</div>
+		<div class="imgPostionDiv">背景图片定位</div>
+
+		<h1>background: 颜色 背景图片 是否重复 位置 是否跟着滚动</h1>
+		<br>
+		
+		
+		<h1>列表</h1>
+		<ul>
+			<li>无序列表：none、disc（实心的圆点）、circle（空心的圆点）、sequare（实心的方块）</li>
+			<li>有序列表：none、decimal（从1开始的整数）、lower-roman、upper-roman、lower-alpha(小写英文字母)、upper-alpha</li>
+		</ul>
+		
+		<ul>
+			<li style="list-style-type: circle;">手机li style="list-style-type: circle;"</li>
+			<li style="list-style-type: square;">电脑li style="list-style-type: square;"</li>
+			<li style="list-style-type: disc;">笔记本li style="list-style-type: disc;"</li>
+		</ul>
+		
+		<ul>
+			<li style="list-style-type: upper-alpha;">手机style="list-style-type: upper-alpha;" </li>
+			<li style="list-style-type: lower-alpha;">手机style="list-style-type: lower-alpha;" </li>
+			<li style="list-style-type: lower-roman;">手机style="list-style-type: lower-roman;" </li>
+			<li style="list-style-type: upper-roman;">手机style="list-style-type: upper-roman;" </li>
+			<li style="list-style-type: none;">手机style="list-style-type: none;" </li>
+			<li style="list-style-type: decimal;">手机style="list-style-type: decimal;" </li>
+			
+		</ul>
+		
+		<ul>
+			<li style="list-style-image: url(../assets/001.png);">手机style="list-style-image: url(../assets/001.png);"</li>
+			<li style="list-style-image: url(../assets/001.png);">手机</li>
+			<li style="list-style-image: url(../assets/001.png);">手机</li>
+		</ul>
+		<br>
+		<ul>
+			<li style="list-style-position: inside;">style="list-style-position: inside;"手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机</li>
+			<li style="list-style-position: outside;">style="list-style-position: outside;"手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手机手</li>
+		</ul>
+		<br>
+		<b>list-style:  list-style-type   list-style-postion   list-style-image</b>
+		
+		<br><br><br><br><br><br><br><br>
+	</body>
+</html>

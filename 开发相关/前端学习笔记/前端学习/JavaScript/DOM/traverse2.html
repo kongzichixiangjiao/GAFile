@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>遍历Node-NamedNodeMap</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ui id="box" data-url="index.html" node-action="submit">
+			<li>1</li>
+			<li>2</li>
+		</ui>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var box = document.getElementById("box");
+				var attrs = box.attributes;
+				
+				console.log(attrs.length); // 3
+				console.log(attrs[0]); // id="box"
+				console.log(attrs.item(1)); // data-url对象
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<button id="btn1" onclick="clicked()" type="button">Click me </button>
+	<button id="btn" type="button">Click me </button>
+
+	<button id="mybtn">兼容点击</button>
+
+	<div id="parent">
+		<div id="son">点击-事件冒泡</div>
+	</div>
+
+	<div>
+		<ul id="myUl">
+			<li id="1">111</li>
+			<li id="2">222</li>
+			<li id="3">333</li>
+		</ul>
+	</div>
+
+	<div id="parentBtn" style="height: 1600px; background-color: #666666;">
+		<button id="myBtnEvent">点击-Event对象属性与方法</button>
+	</div>
+
+	<a href="http://www.baidu.com" id="a">跳转-阻止默认行为</a>
+
+	<input id="input" type="text" style="width: 300px; height: 300px;">
+
+	<div id="clickDiv" style="height: 40px; width: 200px; background-color: #6495ED;">
+		单击/双击
+	</div>
+	<div id="keyDiv" style="height: 540px; width: 400px; background-color: #6495ED;">
+		键盘事件
+	</div>
+
+	<script type="text/javascript">
+		function clicked() {
+			alert("Dom0级")
+		}
+	</script>
+	<script type="text/javascript">
+		var btn = document.getElementById("btn");
+
+		// btn.onclick = function() {
+		// 	alert("Dom0级")
+		// };
+
+		// Dom2级
+		var clickme = function () {
+			alert("Dom2级");
+		};
+
+		btn.addEventListener('click', clickme);
+
+		btn.addEventListener('click', function () {
+			alert("Dom2级_1");
+		});
+
+		btn.removeEventListener('click', clickme);
+
+
+			// IE8以前
+			// var clickme1 = function() {
+			// 	alert("Dom2级");
+			// };
+			// console.log(clickme1);
+			// btn.attachEvent("onclick", function() {
+
+			// }, false);
+			// btn.detachEvent('onclick', clickme1);
+
+			// btn.attachEvent('onclick', function() {
+			// 	alert(this === window);
+			// })
+	</script>
+	<script type="text/javascript">
+		// 兼容浏览器的DOM事件
+		var btn = document.getElementById('mybtn');
+		var EventUtil = {
+
+			// 针对keypress
+			getCharCode: function (event) {
+				if (typeof (event.charCode) == "number") {
+					return event.charCode;
+				} else {
+					return event.keyCode;
+				}
+			},
+			getTarget: function (event) {
+				return event.target || event.srcElement;
+			},
+			preventDefault: function (event) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+			},
+			stopPropagation: function (event) {
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			},
+			addHandler: function (element, type, handler) {
+				// 绑定事件
+				// chrom, firefox, IE9等 addEventListener
+				// IE8及以下浏览器 attachEvent
+				if (element.addEventListener) {
+					element.addEventListener(type, handler, false);
+				} else if (element.attachEvent) {
+					element.attachEvent("on" + type, handler);
+				} else {
+					element["on" + type] = null;
+				}
+			},
+			removeHandler: function (element, type, handler) {
+				// 移除事件
+				if (element.removeEventListener) {
+					element.removeEventListener(type, handler);
+				} else if (element.detachEvent) {
+					element.detachEvent("on" + type, handler);
+				} else {
+					element["on" + type] = null;
+				}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		/* 事件冒泡 */
+		var parent = document.getElementById("parent");
+		var son = document.getElementById("son");
+		parent.addEventListener("click", function () {
+			alert("parent");
+		}, true);
+		// 默认是false
+		// 如果都是false 冒泡事件 先alert-son 再alert-parent
+		// 如果都是true 捕获事件 先alert-parent 再alert-son
+		son.addEventListener("click", function () {
+			alert("son");
+		}, true);
+	</script>
+	<script type="text/javascript">
+		/* 事件委托 */
+		// 事件添加到ul上，点击li触发事件
+		var myUl = document.getElementById("myUl");
+		console.log(myUl);
+		myUl.addEventListener("click", function (event) {
+			console.log(event.target.id);
+		});
+	</script>
+	<script type="text/javascript">
+		var myBtnEvent = document.getElementById("myBtnEvent");
+		var parentBtn = document.getElementById("parentBtn");
+
+		// myBtnEvent.addEventListener("click", function(event) {
+		// 	console.log(event.type); // click
+
+		// })
+		// myBtnEvent.addEventListener("mouseout", function() {
+		// 	console.log(event.type); // mouseout
+		// })
+		var eventFun = function (event) {
+			// event.stopPropagation(); // 阻止冒泡事件或者捕获事件 - 冒泡或者捕获的后续事件不执行
+			// event.cancelBubble = true // 同 stopPropagation（）
+
+			console.log(event.clientY); // 浏览器顶端到点击位置的Y轴距离
+			console.log(event.pageY); // 浏览器顶端到点击位置的Y轴距离 + 滚动轴的距离
+			console.log(event.screenY); // 屏幕顶部到鼠标位置
+
+			console.log("target == ", event.target); // 点击的对象
+			console.log("currentTarget", event.currentTarget); // 事件的对象
+			if (event.type == "click") {
+				console.log("type == ", event.type); // click
+			} else if (event.type == "mouseout") {
+				console.log("type == ", event.type); // mouseout
+			} else {
+
+			}
+		}
+		parentBtn.addEventListener("click", eventFun);
+		myBtnEvent.addEventListener("click", eventFun);
+			// myBtnEvent.addEventListener("mouseout", eventFun);
+	</script>
+	<script type="text/javascript">
+		var a = document.getElementById("a");
+		a.addEventListener("click", function (event) {
+			// event.preventDefault(); // 阻止默认行为 a标签的默认事件失效
+			// event.returnValue = false; // 同preventDefault()
+		});
+	</script>
+
+	<script type="text/javascript">
+		EventUtil.addHandler(window, "load", function (e) {
+			console.log("load方法");
+		});
+		var img = document.createElement("img");
+		EventUtil.addHandler(img, "load", function (e) {
+			e = EventUtil
+		});
+		img.scr = "../001.png";
+
+		// 图片预加载-提前加载到内存中
+		var image = new Image();
+		EventUtil.addHandler(image, "load", function (e) {
+			e = EventUtil
+		});
+		image.scr = "../001.png";
+
+		// 动态加载JS
+		var script = document.createElement("script");
+		EventUtil.addHandler(script, "load", function (event) {
+			console.log("加载js");
+		});
+		script.src = ""; // js路径
+		document.body.appendChild(script);
+
+		// 动态加载CSS 
+		var link = document.createElement("link");
+		link.type = "text/css";
+		link.rel = "stylesheet";
+		EventUtil.addHandler(link, "load", function (event) {
+			console.log("加载CSS");
+		});
+		link.href = "";
+		document.getElementsByTagName("head")[0].appendChild(link);
+
+		// 用户从一个界面切换到另一个界面
+		EventUtil.addHandler(window, "unload", function (event) {
+			console.log("unload");
+		});
+
+		// 窗口大小发生变化
+		EventUtil.addHandler(window, "resize", function (event) {
+			console.log("resize");
+		});
+
+		// 滚动
+		EventUtil.addHandler(window, "scroll", function (event) {
+			console.log("scroll");
+		});
+
+		var input = document.getElementById("input");
+
+		// 键码，任意键出发
+		EventUtil.addHandler(input, "keydown", function (event) {
+			console.log(event.keyCode);
+		});
+		EventUtil.addHandler(input, "keyup", function (event) {
+			// console.log(event.keyCode);
+		});
+		// ASCII码，字符键触发
+		EventUtil.addHandler(input, "keypress", function (event) {
+			// console.log(event.keyCode); // 键码
+			console.log(event.charCode);
+		});
+
+		EventUtil.addHandler(input, "blur", function (event) {
+			console.log("失去焦点");
+		});
+		EventUtil.addHandler(input, "focusout", function (event) {
+			console.log("失去焦点");
+		});
+		EventUtil.addHandler(input, "DOMFocusOut", function (event) {
+			console.log("失去焦点");
+		});
+
+		EventUtil.addHandler(input, "focus", function (event) {
+			console.log("聚焦点-不支持冒泡");
+		});
+		EventUtil.addHandler(input, "focusin", function (event) {
+			console.log("聚焦点-不支持冒泡");
+		});
+		EventUtil.addHandler(input, "DOMFocusIn", function (event) {
+			console.log("聚焦点-不支持冒泡");
+		});
+
+
+		var clickDiv = document.getElementById("clickDiv");
+
+		EventUtil.addHandler(clickDiv, "click", function (event) {
+			console.log("点击");
+		});
+		EventUtil.addHandler(clickDiv, "dblclick", function (event) {
+			console.log("双击");
+		});
+		EventUtil.addHandler(clickDiv, "mousedown", function (event) {
+			console.log("mousedown");
+			// event.button == 0 // 鼠标左键
+			// event.button == 1 // 鼠标中键
+			// event.button == 2 // 鼠标右键
+
+			//IE8 
+			// event.button == 0 // 没有按下按钮
+			// event.button == 1 // 按下主鼠标按钮
+			// event.button == 2 // 按下次鼠标按钮
+		});
+		EventUtil.addHandler(clickDiv, "mouseup", function (event) {
+			console.log("mouseup");
+		});
+		EventUtil.addHandler(clickDiv, "mousemove", function (event) {
+			console.log("mousemove");
+		});
+		EventUtil.addHandler(clickDiv, "mouseleave", function (event) {
+			console.log("mouseleave");
+		});
+		// 进入元素
+		EventUtil.addHandler(clickDiv, "mouseover", function (event) {
+			console.log("mouseover");
+		});
+		// 进入元素
+		EventUtil.addHandler(clickDiv, "mouseenter", function (event) {
+			console.log("mouseenter");
+		});
+
+		// 按住shift/ctr/alt/meta 点击鼠标
+		var keyDiv = document.getElementById("keyDiv");
+		EventUtil.addHandler(keyDiv, "click", function (event) {
+			var keys = new Array();
+
+			if (event.shiftKey) {
+				keys.push("shift");
+			}
+			if (event.ctrlKey) {
+				keys.push("ctrl");
+			}
+			if (event.altKey) {
+				keys.push("alt");
+			}
+			if (event.metaKey) {
+				keys.push("meta");
+			}
+			console.log(keys.join(","));
+		});
+
+		// 任意元素被删除会被触发
+		// 绑定谁都可以，这里绑定的是document
+		EventUtil.addHandler(document, "DOMNodeRemoved", function (event) {
+			console.log("DOMNodeRemoved");
+		});
+		// document.body.removeChild(keyDiv);
+
+		// 任意元素被添加就会触发
+		EventUtil.addHandler(document, "DOMNodeInserted", function (event) {
+			console.log("DOMNodeInserted");
+		});
+
+		// document结构中发生任何变化都会触发
+		EventUtil.addHandler(document, "DOMSubtreeModified", function (event) {
+			console.log("DOMSubtreeModified");
+		});
+		// document.body.removeChild(keyDiv);
+		document.body.appendChild(keyDiv);
+
+		// 移除之前被触发
+		EventUtil.addHandler(keyDiv, "DOMNodeRemovedFromDocument", function (event) {
+			console.log("DOMNodeRemovedFromDocument");
+		});
+		// 从文档中添加之前被触发
+		EventUtil.addHandler(keyDiv, "DOMNodeInsertedIntoDocument", function (event) {
+			console.log("DOMNodeInsertedIntoDocument");
+		});
+		// 在DOM树之后就会触发，不理会图像、JavaScript文件、css文件或其他资源是否已经下载
+		EventUtil.addHandler(keyDiv, "DOMContentLoaded", function (event) {
+			console.log("DOMContentLoaded");
+		});
+
+		// readystatechange支持IE、firefox、opera，提供文档或者元素加载过程中
+		// 1、document.readyState == uninitialized 尚未初始化
+		// 2、loading 对象正在加载数据
+		// 3、interactive 可以操作对象，但还没完全加载
+		// 4、对象已经加载完毕
+		EventUtil.addHandler(keyDiv, "readystatechange", function (event) {
+			console.log("readystatechange");
+		});
+
+		// hashchange 只能给window添加，当URL中#后面的值发生变化时触发
+		EventUtil.addHandler(window, "hashchange", function (event) {
+			console.log("hashchange");
+			console.log(event.oldURL);
+			console.log(event.newURL);
+		});
+
+
+		// 移动端手势事件
+
+		var parentBtn = document.getElementById("parentBtn");
+
+		// 手指触摸屏幕
+		EventUtil.addHandler(parentBtn, "touchstart", function (event) {
+			console.log("touchstart");
+			console.log(event.touches); // 当前触摸屏幕的触摸点数组
+			console.log(event.changedTouches); // 数组中只包含引起事件的触摸点信息
+			console.log(event.targetTouches); // 只包含放在元素上的触摸信息
+		});
+		EventUtil.addHandler(parentBtn, "touchmove", function (event) {
+			console.log("touchmove");
+		});
+		EventUtil.addHandler(parentBtn, "touchend", function (event) {
+			console.log("touchend");
+		});
+	</script>
+</body>
+
+</html>

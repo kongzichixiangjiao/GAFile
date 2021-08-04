@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.btn {
+				width: 140px;
+				height: 30px;
+				line-height: 30px;
+				background-color: #040A10;
+				color: #FFFFFF;
+				font-size: 14px;
+				text-align: center;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+			.lock {
+				width: 140px;
+				height: 30px;
+				line-height: 30px;
+				background-color: #040A10;
+				color: red;
+				font-size: 14px;
+				text-align: center;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+			.unlock {
+				width: 140px;
+				height: 30px;
+				line-height: 30px;
+				background-color: #6495ED;
+				color: #FFFFFF;
+				font-size: 14px;
+				text-align: center;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+			.box {
+				padding: 50px;
+				
+				
+			}
+			.left, .tip {
+				float: left;
+			}
+			.left {
+				margin-right: 10px;
+			}
+			.tip {
+				display: none;
+			}
+			.moveBox {
+				width: 200px;
+				height: 200px;
+				background-color: #F08080;
+				overflow: auto;
+			}
+		</style>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				console.log("页面加载时执行");
+				var lockBtn = document.getElementById('lockBtn');
+				lockBtn.onclick = function() {
+					if (this.className === "lock") {
+						this.className = "unlock";
+						this.innerHTML = "解锁"
+					} else {
+						this.className = "lock";
+						this.innerHTML = "锁住"
+					}
+				}
+			}
+		</script>
+		<!-- <script type="text/javascript">
+			var lockBtn = document.getElementById('lockBtn');
+			lockBtn.onclick = function() {
+				if (this.className === "lock") {
+					this.className = "unlock";
+					this.innerHTML = "解锁"
+				} else {
+					this.className = "lock";
+					this.innerHTML = "锁住"
+				}
+			}
+		</script> -->
+
+		<script type="text/javascript">
+			window.onload = function() {
+				var phone = document.getElementById("phone"),
+					tip = document.getElementById("tip");
+
+				phone.onfocus = function() {
+					tip.style.display = 'block';
+				}
+				phone.onblur = function() {
+					// var phoneValue = phone.value;
+					var phoneValue = this.value;
+					if (phoneValue == "") {
+						tip.style.display = 'none';
+						return;
+					}
+
+					if (phoneValue.length == 11 && !isNaN(phoneValue)) {
+						tip.innerHTML = "正确";
+					} else {
+						tip.innerHTML = "请输入有效的手机号码";
+					}
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				var menu = document.getElementById('menu');
+				menu.onchange = function() {
+					// var bgcolor = this.value;
+					var bgcolor = menu.options[menu.selectedIndex].value;
+					console.log(bgcolor);
+					if (bgcolor == "") {
+						return;
+					}
+					document.body.style.background = bgcolor;
+				}
+			}
+		</script>
+
+
+	</head>
+	<body>
+		<ul>
+			<li>onload：页面加载时触发</li>
+			<li>onclick：鼠标点击时触发</li>
+			<li>onmouseover：鼠标滑过时触发</li>
+			<li>onmouseout：鼠标离开时触发</li>
+			<li>onfoucs：获取焦点时触发</li>
+			<li>onblur：失去焦点时触发</li>
+			<li>onchange：域的内容改变时发生</li>
+		</ul>
+		<input type="button" value="弹 出" onclick="alert('clicked')">
+		<div id="btn" class="btn" onmouseover="mouseoverFn(this, '#fff')" onmouseout="mouseoutFn(this)">开始</div>
+		<div id="lockBtn" class="lock">锁住</div>
+
+		<div class="box">
+			<div class="left">
+				<input type="text" name="" id="phone" value="" placeholder="输入手机号码" />
+			</div>
+			<div class="tip" id="tip">
+				请输入有效的手机号码
+			</div>
+		</div>
+		<div class="selectBox">
+			选择背景色：
+			<select name="" id="menu">
+				<option value="">请选择</option>
+				<option value="#fff">白色</option>
+				<option value="#f00">红色</option>
+				<option value="#0f0">绿色</option>
+				<option value="#00f">蓝色</option>
+			</select>
+		</div>
+		<div class="moveBox" id="moveBox">
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+		</div>
+		<p>您还可以输入 <span id="count">30</span>/30</p>
+		<div class="input">
+			<textarea id="text" rows="" cols="70" rows="4"></textarea>
+		</div>
+		<script type="text/javascript">
+			function mouseoverFn(btn, bgColor) {
+				// console.log("mouseoverFn");
+				// var div = document.getElementById('btn')
+				// div.style = "color: red";
+
+				btn.style.color = "red";
+			}
+
+			function mouseoutFn(btn) {
+				btn.style.color = "#fff";
+			}
+		</script>
+		<script type="text/javascript">
+			var moveBox = document.getElementById("moveBox");
+			moveBox.onmousedown = function() {
+				console.log("onmousedown")
+			}
+			moveBox.onmousemove = function() {
+				console.log("onmousemove");
+			}
+
+			moveBox.onmouseup = function() {
+				console.log("onmouseup");
+			}
+			moveBox.onmouseleave = function() {
+				console.log("onmouseleave");
+			}
+			moveBox.onclick = function() {
+				console.log("onclick");
+			}
+
+			window.onresize = function() {
+				console.log("浏览器尺寸发生改变");
+			}
+			window.onscroll = function() {
+				console.log("滚动条滚动");
+			}
+			moveBox.onscroll = function() {
+				console.log("moveBox-滚动条滚动");
+			}
+		</script>
+		<script type="text/javascript">
+			window.onkeydown = function(event) {
+				console.log("onkeydown", event.keyCode);
+			}
+			window.onkeyup = function(event) {
+				console.log("onkeyup", event.keyCode);
+			}
+			window.onkeydown = function(event) {
+				console.log("onkeydown", event.keyCode);
+			}
+		</script>
+		<script type="text/javascript">
+			var text = document.getElementById("text");
+			var total = 30;
+			var count = document.getElementById("count");
+			document.onkeyup = function() {
+				var len = text.value.length;
+				console.log(len);
+				var allow= total - len;
+				count.innerHTML = allow;
+			}
+		</script>
+	</body>
+</html>

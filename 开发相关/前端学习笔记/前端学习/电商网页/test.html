@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				background-color: yellowgreen;
+				width: 300px;
+				height: 300px;
+			}
+
+			.fadeOut {
+				opacity: 0 !important;
+				visibility: hidden !important;
+			}
+
+			.transition {
+				-o-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-webkit-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box transition"></div>
+		<button class="showBtn">show</button>
+		<button class="hideBtn">hide</button>
+
+		<script src="js/transition.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 如果cdn加载jquery失败 加载本地js
+			window.jQuery || document.write(
+				'<script type="text/javascript" src="../jQuery/jquery-3.5.1/jquery-3.5.1.js"><\/script>')
+		</script>
+		<script type="text/javascript">
+			var box = $('.box');
+			box.on('transitionend', function() {
+				console.log("---");
+			})
+
+			showBtn = $('.showBtn');
+			hideBtn = $('.hideBtn');
+
+			showBtn.on('click', function() {
+				console.log("show");
+				box.show();
+				box.removeClass('fadeOut');
+			});
+			hideBtn.on('click', function() {
+				console.log("hide");
+				box.addClass('fadeOut');
+				box.hide();
+			})
+		</script>
+		<script>
+			var TestModul = (function() {
+
+				var self = this;
+
+				var _str = 'str';
+
+				var _getName = function() {
+					return 'name';
+				}
+
+				var _init = function(config) {
+					if (typeof config === 'undefined') return;
+
+					self._str = config['id'];
+				}
+
+				var TestModul = function(config) {
+					_init(config);
+				}
+
+				TestModul.prototype.init = function(config) {
+					_init(config);
+					return this;
+				}
+
+				TestModul.prototype.log = function() {
+					console.log("_str == ", self._str);
+					console.log("TestModul.prototype.log");
+				}
+
+				return TestModul;
+
+			})()
+
+			// var m = new TestModul({
+			// 	"id": '2'
+			// });
+			// m.log();
+			var m = new TestModul().init({
+				"id": '2'
+			});
+			m.log();
+
+			m._str = '12';
+			console.log(m._str);
+		</script>
+
+		<script type="text/javascript">
+			var Class = (function() {
+				var _mix = function(r, s) {
+					for (var p in s) {
+						if (s.hasOwnProperty(p)) {
+							r[p] = s[p]
+						}
+					}
+				}
+
+				var _extend = function() {
+					//开关 用来使生成原型时,不调用真正的构成流程init
+					this.initPrototype = true
+					var prototype = new this()
+					this.initPrototype = false
+
+					var items = Array.prototype.slice.call(arguments) || []
+					var item
+
+					//支持混入多个属性，并且支持{}也支持 Function
+					while (item = items.shift()) {
+						_mix(prototype, item.prototype || item)
+					}
+
+					// 这边是返回的类，其实就是我们返回的子类
+					function SubClass() {
+						if (!SubClass.initPrototype && this.init)
+							this.init.apply(this, arguments) //调用init真正的构造函数
+					}
+
+					// 赋值原型链，完成继承
+					SubClass.prototype = prototype
+
+					// 改变constructor引用
+					SubClass.prototype.constructor = SubClass
+
+					// 为子类也添加extend方法
+					SubClass.extend = _extend
+
+					return SubClass
+				}
+				//超级父类
+				var Class = function() {}
+				//为超级父类添加extend方法
+				Class.extend = _extend
+
+				return Class
+			})()
+		</script>
+	</body>
+</html>

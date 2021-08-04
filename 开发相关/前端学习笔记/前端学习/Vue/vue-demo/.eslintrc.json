@@ -1,0 +1,26 @@
+{
+  "env": { // 指定脚本的运行环境， env 关键字指定你想启用的环境，并设置它们为 true
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [ // 设置当前ESLint默认继承的规则（或者你也可以使用标准规则：standard）
+    "eslint:recommended", // 使用ESLint推荐的规则
+    "plugin:vue/essential"
+  ],
+  "globals": { //  脚本在执行期间访问的额外的全局变量
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": { // 解析器选项
+    "ecmaVersion": 2018,
+    "sourceType": "module" // 类型为module，因为代码使用了使用了ECMAScript模块
+  },
+  "plugins": [ // 使用的插件
+    "vue"
+  ],
+  "rules": { // 启用的规则及其各自的错误级别(在这里配置规则)
+    "linebreak-style": "warn", // 换行规则
+    "vue/html-closing-bracket-newline": "off"
+  }
+}

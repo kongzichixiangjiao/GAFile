@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>性能优化</title>
+	</head>
+	<body>
+		<!-- css、js引入问题 -->
+		<!-- 淘宝网为例 -->
+		<!-- css全部内联内联方式 -->
+		<!-- js单独文件引入、内联 -->
+		<!-- 内联：优点：减少HTTP请求。缺点：无法复用；HTML文件变大，加载时间长；不便于后期维护 -->
+		<!-- 
+		内联方式引入，上线时候可以工程化，把base.css内联到HTML界面
+		<link rel="stylesheet" type="text/css" href="css/base.css" /> 
+		-->
+
+		<!-- 首屏需要的使用内联 -->
+
+		<!-- js尽量后加载 -->
+
+		<!-- 
+		屏幕适配的js 需要提前加载
+		根据数据渲染界面的js 尽早加载
+		 -->
+
+		<!-- js执行会阻塞DOM加载 -->
+
+		<!-- 避免重复的js、css请求 -->
+
+		<!-- 工程化压缩代码、文件合并、文件缓存（后台设置） -->
+
+		<!-- 图片优化
+		图片尽量压缩、使用更高压缩比格式webP格式 
+		尽量少用图片  使用图标字体  CSS画图形
+		减少网络请求次数：合理使用base64内嵌图片  雪碧图
+		-->
+
+		<!-- 
+		减少标签层数嵌套 
+		a标签href避免空链接
+		img的src避免空
+		iframe、table极度不推荐使用
+		主要内容写在HTML上面，次要内容写在HTML下面，并不是看UI位置写HTML层次结构
+		-->
+
+		<!-- 
+		选择器 
+		选择器选择id比class块 id给js用 class给css用
+		.slider .slider-item-container .slider-item .slider-link .slider-img {
+			
+		}
+		太长解析变慢
+		从右往左找 找到所有slider-img 再找到所有父元素是slider-link...
+		.slider-img {
+			
+		}
+		给class起名字时候添加命名空间slider
+		通配符* 不推荐使用 
+		ul, li, dl, dt, dd, p {
+			padding: 0;
+			margin: 0;
+		}
+		[class*="slider-"] {
+			
+		} 这种不建议使用 性能低
+		-->
+
+		<!--
+		margin 上右下左 
+		margin 上下
+		margin 上 左右 下
+		 -->
+
+		<!-- 优先使用css动画 其次js动画 合理开启GPU -->
+		<!-- 移动端尽量使用flex 少用float -->
+
+		<!-- 
+		DOM操作很耗性能
+		能用id尽量使用id查找DOM
+		innerHTML += 操作少用 使用indicatorItemFragment
+		<script type="text/javascript">
+			var indicatorItemFragment = document.indicatorItemFragment();
+			var spanEl = document.createElement('span'); // 只创建一次结点
+			// 提前保存sliderItem.length
+			for (let i = 0, num = sliderItem.length; i < num; i++) {
+				// var indicatorItem = document.createElement('span');
+				indicatorItem = spanEl.cloneNode(true); // false补拷贝内容
+				indicatorItem.className = 'slider-indicator';
+				// 使用indicatorItemFragment这个时候还没有渲染
+				indicatorItemFragment.appendChild(indicatorItem);
+			}
+			// indicatorItemFragment这个时候才会渲染
+			indicatorContainer.appendChild(indicatorItemFragment);
+		</script>
+		-->
+
+		<!-- 不推荐在js中更改css的style -->
+
+		<!-- 
+		重排：元素和元素之间的关系，计算元素位置。 
+		重绘：颜色、透明度...进行绘制
+		
+		重排之后一定会重绘。 
+		-->
+
+		<!-- 新增结点绑定事件？
+		 
+		给多个相同结点元素绑定同一个事件：给父元素绑定事件，在父元素中判断点击的是哪个结点元素
+		itemContainer.addEventListener('click', function(ev) {
+			if (ev.target && /(^|\s)slider\-indicator($|\s)/.test(ev.target.className)) {
+				console.log('click');
+			}
+		})
+		-->
+
+		<!-- 节流、稀释 ：减少代码执行次数
+		
+		<script type="text/javascript">
+			var timer = null;
+			window.addEventListener('scroll', function() {
+				clearTimeout(timer);
+				timer = setTimeout(function() {
+					console.log('要执行的代码');
+				}, 100);
+			})
+		</script>
+		-->
+
+		<!-- 延迟加载、懒加载
+		 
+		<script type="text/javascript">
+			var lazyLoadClass = '.lazyload-img';
+			// document.querySelectorAll() 获取到的是一个nodeList 需要转成数组
+			var imgArr = Array.prototype.slice.call(document.querySelectorAll(lazyLoadClass));
+		
+			lazyLoadImages();
+		
+			var timer = null;
+			window.addEventListener('scroll', function() {
+				clearTimeout(timer);
+				timer = setTimeout(function() {
+					console.log('要执行的代码');
+				}, 100);
+				lazyLoadImages();
+			}, false);
+		
+			function lazyLoadImages() {
+				for (var i = 0; i < imgArr.length; i++) {
+					if (isInVisibleArea(imgArr[i])) {
+						imgArr[i].src = imgArr[i].getAttribute("data-src");
+						imgArr.splice(i, 1); // 从i位置删除一个元素
+						i--;
+					}
+				}
+			}
+		
+			function isInVisibleArea(el) {
+				var rect = el.getBoundingClientRect(); // rect 中的top 是屏幕到元素底部的高 rect中的left是屏幕左侧到物体最右侧的距离
+		
+				return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+			}
+		</script>
+		
+		-->
+		
+	</body>
+</html>

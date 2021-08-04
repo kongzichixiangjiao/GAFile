@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>操作结点</title>
+		<script src="domReady.js" type="text/javascript">
+
+		</script>
+	</head>
+	<body>
+		<ul id="myUl">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<script type="text/javascript">
+			myReady(function() {
+				var myUl = document.getElementById("myUl");
+				var txt = document.createTextNode("4");
+				var li = document.createElement('li');
+				li.appendChild(txt);
+				myUl.appendChild(li);
+
+				var firstLi = myUl.firstElementChild;
+				myUl.appendChild(firstLi);
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var myUl = document.getElementById("myUl");
+				var txt = document.createTextNode("4");
+				var liNew = document.createElement('li');
+				liNew.appendChild(txt);
+
+				var li2 = myUl.children.item(1);
+				var returnNode = myUl.insertBefore(liNew, li2);
+				// var returnNode = myUl.insertBefore(liNew ,myUl.firstElementChild);
+				// var returnNode = myUl.insertBefore(liNew ,myUl.lastElementChild);
+				// var returnNode = myUl.insertBefore(liNew ,null);
+				console.log(returnNode.innerHTML);
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var myUl = document.getElementById("myUl");
+				var txt = document.createTextNode("4");
+				var liNew = document.createElement('li');
+				liNew.appendChild(txt);
+
+				var li2 = myUl.children.item(1);
+				var returnNode = myUl.replaceChild(liNew, li2);
+				console.log(returnNode);
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var myUl = document.getElementById('myUl');
+				// var newNode = myUl.cloneNode();
+				var newNode = myUl.cloneNode(true); // 深度复制 li也会被复制
+				console.log(newNode);
+
+				document.body.appendChild(newNode);
+			});
+		</script>
+
+		<script type="text/javascript">
+			/* normalize */
+			myReady(function() {
+				var div = document.createElement("div");
+
+				var textNode = document.createTextNode("先添加的内容--");
+				div.appendChild(textNode);
+				var textNode2 = document.createTextNode("后添加的内容--");
+				div.appendChild(textNode2);
+
+				document.body.appendChild(div);
+
+				console.log(div.childNodes.length); // 2
+				div.normalize();
+				console.log(div.childNodes.length); // 1
+				console.log(div.firstChild.nodeValue);
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			myReady(function() {
+				/* splitText */
+				console.log("splitText");
+				var div = document.createElement("div");
+
+				var textNode = document.createTextNode("先添加的内容--后添加的内容--");
+				div.appendChild(textNode);;
+
+				document.body.appendChild(div);
+
+				console.log(div.firstChild.nodeValue);
+				console.log(div.childNodes.length); // 1
+				var newNode = div.firstChild.splitText(5);
+				console.log(div.firstChild.nodeValue);
+				console.log(newNode.nodeValue);
+				console.log(div.childNodes.length); // 2
+
+
+			});
+		</script>
+	</body>
+</html>

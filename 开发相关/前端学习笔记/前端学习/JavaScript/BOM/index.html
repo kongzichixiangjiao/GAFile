@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>BOM</title>
+	</head>
+	<body>
+		<h1>BOM：（browser object model） 浏览器对象模型</h1>
+		<div id="top">顶部div</div>
+		<div id="box">
+			<span>iphone12</span>
+			<input type="button" name="" id="btn" value="删除" />
+		</div>
+		<button id="promptBtn">prompt弹框</button>
+		<button id="windowOpenBtn">window open打开新窗口</button>
+		<button id="windowCloseBtn">window close关闭新窗口</button>
+		<br>
+		<br>
+		<button id="setTimeoutBtn">setTimeout</button>
+		<button id="setIntervalBtn">setInterval</button>
+		<div style="height: 1000px; background-color: #6495ED;"></div>
+		<button id="topBtn" type="button">回到顶部</button>
+		<button id="repalceBtn" type="button">location.repace</button>
+
+
+		<a href="index.html">index1</a>
+		<button id="backBtn">返回上一个界面</button>
+		<!-- window对象 -->
+		<script type="text/javascript">
+			var age = 15;
+
+			function sayAge() {
+				// window.alert(age);
+
+				alert(age);
+			}
+
+			// 声明全局变量
+			window.username = "marry";
+
+			// 声明全局方法
+			window.sayName = function() {
+				alert("我是" + this.username);
+			}
+
+			// sayAge();
+			// window.sayName();
+
+			// confirm()
+			var btn = document.getElementById("btn");
+			btn.onclick = function() {
+				var result = window.confirm("您确定\n要删除吗？");
+				if (result) {
+					document.getElementById("box").style.display = "none";
+				} else {
+
+				}
+			}
+
+			// 弹出输入框
+			var promptBtn = document.getElementById("promptBtn");
+			promptBtn.onclick = function() {
+				var message = prompt("请输入您的星座", "默认值");
+				console.log(message);
+			}
+
+			// window.open(pageURL, name, parameters)
+			var windowOpenBtn = document.getElementById("windowOpenBtn");
+			windowOpenBtn.onclick = function() {
+				window.open("newwindow.html", "newwindow",
+					"width=400,height=200,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,location=no,status=no");
+			}
+
+			// window.close(); 
+			// 非弹出式窗口不能关闭
+			var windowCloseBtn = document.getElementById("windowCloseBtn");
+			windowCloseBtn.onclick = function() {
+
+				// window.close(); 
+
+				window.location.href = "about:blank";
+				window.close();
+			}
+		</script>
+		<script type="text/javascript">
+			// 超时调用setTimeout()
+			var setTimeoutBtn = document.getElementById("setTimeoutBtn");
+			setTimeoutBtn.onclick = function() {
+				var setTimeout1 = setTimeout(function() {
+					alert("setTimeout");
+				}, 2000);
+
+				function fnCall() {
+					alert("setTimeout");
+				}
+				// setTimeout(fnCall, 2000);
+
+				// 取消超时调用
+				clearTimeout(setTimeout1);
+			}
+		</script>
+		<script type="text/javascript">
+			var setIntervalBtn = document.getElementById("setIntervalBtn");
+			setIntervalBtn.onclick = function() {
+				var setInterval1 = setInterval(function() {
+					console.log("setInterval");
+				}, 1000);
+
+				// clearInterval(setInterval1);
+			}
+		</script>
+
+		<script type="text/javascript">
+			// location 即时window对象,也是document对象
+			console.log("window.location.href = ", window.location.href);
+
+			console.log("window.location.hash = ", window.location.hash); // #之后内容
+			var topBtn = document.getElementById("topBtn");
+			topBtn.onclick = function() {
+				window.location.hash = "#top";
+				window.location.href = "";
+			}
+			console.log("window.location.host = ", window.location.host);
+			console.log("window.location.pathname = ", window.location.pathname);
+			console.log("window.location.search = ", window.location.search); // 以？开头
+		</script>
+		<script type="text/javascript">
+			var repalceBtn = document.getElementById("repalceBtn");
+			repalceBtn.onclick = function() {
+				window.location.href = ""; // 会生成历史记录
+				window.location.replace("") // 不会生成历史记录
+			}
+			// window.location.reload() // 重新加载当前显示的界面-有可能从缓存中加载
+			// window.location.reload(true) // 重新加载当前显示的界面-从服务器重新加载
+		</script>
+		<script type="text/javascript">
+			// history 
+
+			var backBtn = document.getElementById("backBtn");
+			backBtn.onclick = function() {
+				// history.go(-1) // 历史记录的上一步
+				// history.back() // 历史记录的上一步
+
+				history.forward() // 历史记录的下一步
+				history.go(2) // 历史记录的下2步
+			}
+		</script>
+		<script type="text/javascript">
+			console.log("屏幕宽== ", screen.availWidth);
+			console.log("屏幕高== ", screen.availHeight);
+			console.log("窗口宽 == ", window.innerWidth);
+			console.log("窗口高== ", window.innerHeight);
+		</script>
+		<script type="text/javascript">
+			// Navigator对象 
+			var userAgent = navigator.userAgent;
+			console.log(userAgent);
+		</script>
+	</body>
+</html>

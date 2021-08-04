@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>遍历Node</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<body>
+		<p id="paragraph">文本叶子节点</p>
+		<ul id="box">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<script type="text/javascript">
+			myReady(function() {
+				var oHtml = document.documentElement;
+				console.log(oHtml.tagName);
+
+				// var oHead = oHtml.firstChild;
+				// var oHead = oHtml.childNodes[0];
+				var oHead = oHtml.childNodes.item(0);
+
+				console.log(oHead.tagName);
+				console.log(oHead);
+
+				var oBody = oHtml.childNodes.item(1);
+				// var oBody = oHtml.childNodes[1];
+				console.log(oBody);
+				console.log(document.body);
+
+				console.log(oHead.parentNode == oHtml); // true
+				console.log(oBody.parentNode == oHtml); // true
+
+				var p = document.getElementById("paragraph");
+				console.log(p.ownerDocument == document); // true
+				console.log(p.hasChildNodes()); // true
+
+				var txt = p.childNodes[0];
+				console.log(txt.hasChildNodes()); // false
+			});
+
+			myReady(function() {
+				var box = document.getElementById("box");
+				// #text 空白结点
+				// childNodes返回包括空白结点
+				// children 返回不包含空白结点
+				console.log("childNodes");
+				// box.childNodes.length
+				for (let i = 0; i < box.childNodes.length; i++) {
+					console.log(box.childNodes[i]);
+				}
+
+				console.log("children");
+				// childElementCount
+				for (let i = 0; i < box.childElementCount; i++) {
+					console.log(box.children[i]);
+				}
+
+			});
+
+			myReady(function() {
+				var box = document.getElementById("box");
+				var nodes = box.childNodes;
+				console.log(nodes);
+				console.log(nodes[1]);
+				console.log(nodes.item(1));
+				// nodes.push("<li>4</li>"); // traverse.html:70 Uncaught TypeError: nodes.push is not a function
+
+				function makeArray(nodeList) {
+					var arr = null;
+					try {
+						return Array.prototype.slice.call(nodeList);
+					} catch (e) {
+						arr = new Array();
+						for (let i = 0; i < nodeList.length; i++) {
+							arr.push(nodeList[i])
+						}
+					}
+					return arr;
+				}
+				var newNodeList = makeArray(nodes);
+				newNodeList.push("<li>4</li>");
+				console.log(newNodeList);
+			});
+		</script>
+	</body>
+</html>

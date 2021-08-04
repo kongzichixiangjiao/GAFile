@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>display属性</title>
+		<style type="text/css">
+			div,
+			span {
+				background-color: #00aaee;
+				border: 1px #666 solid;
+			}
+
+			div {
+				display: inline;
+				width: 100px;
+				height: 60px;
+				padding: 5px;
+				margin: 10px;
+			}
+
+			/* span {
+				display: block;
+				width: 100px;
+				height: 60px;
+				padding: 5px;
+				margin: 10px;
+			} */
+			span {
+				display: none;
+			}
+
+			a:hover span {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>inline：元素将显示为内联元素，元素前后没有换行符</li>
+			<li>block：元素将显示为块级元素，元素前后会带有换行符</li>
+			<li>inline-block：行内块元素，元素呈现为inline，具有block相应特性</li>
+			<li>none：此元素不会被显示</li>
+		</ul>
+
+		注意缝隙，代码不换行
+		<div>div-display属性设置为inline，可以设置成inline-block</div>
+		<div>div-display属性设置为inline</div>
+		<div>div-display属性设置为inline</div>
+		<div>div-display属性设置为inline</div>
+		<div>div-display属性设置为inline</div>
+		<div>div-display属性设置为inline</div>
+		<hr>
+		<span>span-display属性设置为block</span>
+		<span>span-display属性设置为block</span>
+		<span>span-display属性设置为block</span>
+		<hr>
+		<a href="#">鼠标放在上面<span>出现</span></a>
+	</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			.content {
+				width: 400px;
+				height: 600px;
+				margin: 0 auto;
+				background-color: #F4F4F4;
+				clear: both;
+				position: relative;
+			}
+
+			.showBtn,
+			.hideBtn {
+				width: 50%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background-color: #5E5E5E;
+			}
+
+			.showBtn {
+				float: left;
+			}
+
+			.hideBtn {
+				float: right;
+			}
+
+			#box {
+				display: none;
+				/* opacity视觉看不见 */
+				width: 100%;
+				height: 560px;
+				padding: 100px 0;
+				background-color: #036EB7;
+				position: absolute;
+				top: 40px;
+			}
+
+
+			.transition {
+				-o-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-webkit-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+
+			.fadeOut {
+				opacity: 0 !important;
+				visibility: hidden !important;
+			}
+
+			.slideUpDownCollapse {
+				/* #box height560 id权重比class高 */
+				height: 0 !important;
+				padding-top: 0 !important;
+				padding-bottom: 0 !important;
+			}
+			.slideLeftRightCollapse {
+				width: 0 !important;
+				padding-left: 0 !important;
+				padding-right: 0 !important;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="content">
+			<div class="showBtn">显示</div>
+			<div class="hideBtn">隐藏</div>
+			<!-- <div id="box" class="transition fadeOut">点击隐藏按钮执行...</div> -->
+			<div id="box">点击隐藏按钮执行...</div>
+
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 如果cdn加载jquery失败 加载本地js
+			window.jQuery || document.write(
+				'<script type="text/javascript" src="../jQuery/jquery-3.5.1/jquery-3.5.1.js"><\/script>')
+		</script>
+
+		<script type="text/javascript" src="./js/transition.js">
+
+		</script>
+		<script type="text/javascript" src="./js/showHide.js">
+
+		</script>
+		<script type="text/javascript">
+			console.log(window.mt.transition.end);
+			console.log(window.mt.transition.isSupport)
+		</script>
+		<script type="text/javascript">
+			var box = $("#box");
+			// silent.init(box);
+			// css3.fade.init(box);
+			// css3.sildeUpDown.init(box);
+			// css3.slideLeftRight.init(box);
+			// css3.fadeSlideUpDown.init(box);
+
+			// var showHide = window.mt.showHide(box, {
+			// 	js: true,
+			// 	animation: 'fadeSlideUpDown'
+			// });
+
+			box.showHide({
+				js: false,
+				css3: true,
+				animation: 'sildeUpDown'
+			})
+
+			// 发布订阅模式
+			var showBtn = $('.showBtn').on('click', function() {
+				// silent.show(box);
+				// css3.fade.show(box);
+				// css3.sildeUpDown.show(box);
+				// css3.slideLeftRight.show(box);
+				// css3.fadeSlideUpDown.show(box);
+				// showHide.show(box);
+				// showHide.show();
+				box.showHide('show');
+
+			});
+			var hideBtn = $('.hideBtn').on('click', function() {
+				// silent.hide(box);
+				// css3.fade.hide(box);
+				// css3.sildeUpDown.hide(box);
+				// css3.slideLeftRight.hide(box);
+				// css3.fadeSlideUpDown.hide(box);
+				// showHide.hide(box);
+				box.showHide('hide');
+			});
+
+			box.on('show shown', function(e) {
+				if (e.type === 'show') {
+					box.html('<p>显示出来一行文字</p>');
+				} else {
+					setTimeout(function() {
+						box.html(box.html() + '<p>第二行文字</p>')
+					}, 1500);
+				}
+			})
+
+			box.on('hide hidden', function(e) {
+				if (e.type === 'hide') {
+					console.log("hide");
+				} else {
+					console.log("hidden");
+				}
+			})
+		</script>
+	</body>
+</html>

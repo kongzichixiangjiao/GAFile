@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul id="myUl">
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+		</ul>
+		<script type="text/javascript">
+			myReady(function() {
+				/* removeChild */
+				console.log("removeChild");
+				var myUl = document.getElementById('myUl');
+				console.log(myUl.childNodes.length);
+				var secondChild = myUl.removeChild(myUl.childNodes[1]);
+				console.log(secondChild);
+				console.log(myUl.childNodes.length);
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				/* removeNode IE 私有实现 */
+				console.log("removeNode");
+				var myUl = document.getElementById('myUl');
+				console.log(myUl.childNodes.length);
+				var removeNode = myUl.removeNode();
+				console.log(removeNode);
+				console.log(myUl.childNodes.length);
+			});
+		</script>
+	</body>
+</html>

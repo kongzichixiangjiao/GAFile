@@ -1,0 +1,15 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
+	border: none;
+}
+
+ul {
+	list-style: none;
+}
+ol {
+	list-style: none;
+}

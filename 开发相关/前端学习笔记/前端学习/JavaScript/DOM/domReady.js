@@ -1,0 +1,3 @@
+function myReady(func) {
+	func();
+};

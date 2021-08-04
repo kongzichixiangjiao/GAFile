@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>类数组对象的动态性</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			myReady(function() {
+				var divs = document.getElementsByTagName("div");
+				var length = divs.length;
+				var i = 0;
+				while (i < lenght) {
+					document.body.appendChild(document.createElement("div"));
+					i++;
+				}
+			})
+		</script>
+	</body>
+</html>

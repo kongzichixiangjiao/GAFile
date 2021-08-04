@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>localstorage</title>
+	</head>
+	<body>
+
+		<!-- 
+		容量： 2-5MB 
+		-->
+
+		<script type="text/javascript">
+			console.log(localStorage);
+
+			var name = localStorage.getItem("name");
+			var age = localStorage.getItem("age");
+			var id = localStorage.getItem("id");
+			var school = localStorage.getItem("school");
+
+			console.log(name);
+			console.log(age);
+			console.log(id);
+			console.log(school);
+
+			localStorage.setItem("name", 'hjn');
+			localStorage.age = 2;
+			localStorage['id'] = '00012';
+			localStorage.setItem("school", 'dazhong');
+
+			var school1 = localStorage.getItem("school");
+			console.log(school1);
+
+			localStorage.removeItem('school');
+
+			// localStorage.clear();
+			// console.log(localStorage);
+
+			console.log(localStorage.length);
+		</script>
+	</body>
+</html>

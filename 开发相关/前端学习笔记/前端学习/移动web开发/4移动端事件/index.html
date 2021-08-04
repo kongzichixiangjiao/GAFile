@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>移动端事件</title>
+	</head>
+	<style type="text/css">
+		/* body {
+			height: 2000px;
+		} */
+
+		.box {
+			width: 350px;
+			height: 350px;
+			background-color: green;
+			margin: 20px auto;
+		}
+
+		.hammer-box {
+			width: 450px;
+			height: 450px;
+			background-color: darkred;
+			margin: 220px auto;
+		}
+
+		.backtop {
+			position: fixed;
+			right: 20px;
+			bottom: 20px;
+			width: 90px;
+			height: 90px;
+			line-height: 90px;
+			text-align: center;
+			text-decoration: none;
+			background-color: rgba(0, 0, 0, 0.6);
+			border-radius: 50%;
+			color: #fff;
+			font-size: 30px;
+			-webkit-tap-highlight-color: transparent;
+			/* transform: translate3d(x, y, 0); */
+			/* 移动端使用translate3d会开启GPU加速 */
+		}
+
+		.moveEl {
+			position: fixed;
+			right: 200px;
+			bottom: 20px;
+			width: 90px;
+			height: 90px;
+			line-height: 90px;
+			text-align: center;
+			text-decoration: none;
+			background-color: rgba(0, 0, 0, 0.6);
+			border-radius: 50%;
+			color: #fff;
+			font-size: 30px;
+			-webkit-tap-highlight-color: transparent;
+		}
+	</style>
+	<body>
+		<!-- 
+		1、触摸事件
+		touch事件
+		pointer事件（PC、移动端，兼容新不好）
+		
+		2、手势（gesture）事件
+		3、传感器（sensor）事件
+		-->
+		<div id="box" class="box"></div>
+		<a href="#" id="backtop" class="backtop">&uarr;</a>
+		<a href="#" id="moveEl" class="moveEl">&uarr;</a>
+		<div id="hammer-box" class="hammer-box"></div>
+
+		<script type="text/javascript">
+			// touch事件
+			var boxEl = document.getElementById('box');
+			// boxEl.ontouchstart = handleStart;
+			// boxEl.ontouchmove= handleMove;
+			// boxEl.ontouchend= handleEnd;
+			// boxEl.ontouchcancel= handleCancel;
+
+			// 建议使用addEventListener
+			boxEl.addEventListener('touchstart', handleStart, false); // false 事件冒泡
+			boxEl.addEventListener('touchmove', handleMove, false);
+			boxEl.addEventListener('touchend', handleEnd, false);
+			boxEl.addEventListener('touchcancel', handleCancel, false);
+
+			function handleStart(e) {
+				console.log("ontouchstart")
+				console.log(e)
+
+				if (e.type === "touchstart") {
+					console.log(e.type);
+				}
+				console.log(e.touches); // 所有的触摸点（物体上和物体外）
+				console.log(e.targetTouches); // 目标触摸点
+				console.log(e.changedTouches); // 改变的触摸点 使用changedTouches
+			}
+			/*
+			e.changedTouches打印结果 
+			
+			clientX: 543.2348022460938 （总是从屏幕左上角开始计算）
+			clientY: 152.60667419433594 （总是从屏幕左上角开始计算）
+			force: 1 （力度大小 不准确）
+			identifier: 0 （标识）
+			pageX: 543.2348022460938 （包括滚动的距离）
+			pageY: 152.60667419433594（包括滚动的距离）
+			radiusX: 27.22222137451172（鼠标是个点，手指是个圆形的，有半径）
+			radiusY: 27.22222137451172（鼠标是个点，手指是个圆形的，有半径）
+			rotationAngle: 0 （旋转角度）
+			screenX: 441.489013671875
+			screenY: 242.46853637695312
+			*/
+
+			function handleMove() {
+				console.log("ontouchmove")
+			}
+
+			function handleEnd() {
+				console.log("ontouchend")
+			}
+
+			function handleCancel() {
+				console.log("ontouchcancel")
+			}
+		</script>
+		<script type="text/javascript">
+			var backtop = document.getElementById('backtop');
+			// backtop.style.transform = 'translate3d(-200px, -10px, 0)';
+			var curPoint = {
+				x: 0,
+				y: 0
+			}
+			backtop.addEventListener('click', function() {
+				move(this, -10 + curPoint.x, -10 + curPoint.y);
+				curPoint.x += -10;
+				curPoint.y += -10;
+			}, false);
+
+			function move(el, x, y) {
+				x = x || 0;
+				y = y || 0;
+				// console.log(el);
+				backtop.style.transform = 'translate3d(' + x + 'px' + ', ' + y + 'px' + ', 0)';
+
+				// console.log('translate3d(' + x + 'px' + ', ' + y + 'px' + ', 0)');
+			}
+		</script>
+		<script type="text/javascript">
+			var moveEl = document.getElementById('moveEl');
+
+			drag(moveEl, {
+				x: true,
+				y: true
+			});
+
+			function drag(el, options) {
+
+				options.x = typeof options.x !== 'undefined' ? options.x : true;
+				options.y = typeof options.y !== 'undefined' ? options.y : true;
+
+				// options x/y轴是否允许拖拽
+				if (!options.x && !options.y) {
+					return;
+				}
+
+				// 记录当前坐标点
+				var curPoint = {
+					x: 0,
+					y: 0
+				};
+
+				// 开始移动的起始位置
+				var startPoint = {};
+				var isTouchMove = false
+
+				// 添加监听事件
+				el.addEventListener('touchstart', handleStart, false);
+				el.addEventListener('touchmove', handleMove, false);
+				el.addEventListener('touchend', handleEnd, false);
+
+				function handleStart(e) {
+					var touch = e.changedTouches[0];
+
+					// 获取起始坐标点
+					startPoint.x = touch.pageX;
+					startPoint.y = touch.pageY;
+					console.log("s");
+				}
+
+				function handleMove(e) {
+					e.preventDefault(); //阻止默认行为
+
+					isTouchMove = true;
+
+					var touch = e.changedTouches[0];
+					// 相对起始点的坐标差值
+					var diffPoint = {};
+					// 移动的距离等于差值+当前
+					var movePoint = {
+						x: 0,
+						y: 0
+					}
+
+					// 计算差值
+					diffPoint.x = touch.pageX - startPoint.x;
+					diffPoint.y = touch.pageY - startPoint.y;
+
+					if (options.x) {
+						movePoint.x = diffPoint.x + curPoint.x;
+					}
+
+					if (options.y) {
+						movePoint.y = diffPoint.y + curPoint.y;
+					}
+
+					move(el, movePoint.x, movePoint.y);
+				}
+
+				function handleEnd(e) {
+					var touch = e.changedTouches[0];
+					console.log("end");
+					// 新的当前坐标 等于 结束坐标 - 开始坐标 + 当前坐标
+					curPoint.x += touch.pageX - startPoint.x;
+					curPoint.y += touch.pageY - startPoint.y;
+
+					isTouchMove = false
+				}
+
+				function move(el, x, y) {
+					x = x || 0;
+					y = y || 0;
+					// console.log(el);
+					el.style.transform = 'translate3d(' + x + 'px' + ', ' + y + 'px' + ', 0)';
+
+					// console.log('translate3d(' + x + 'px' + ', ' + y + 'px' + ', 0)');
+				}
+			}
+		</script>
+
+		<script src="hammer.js"></script>
+		<script type="text/javascript">
+			var boxEl = document.getElementById('hammer-box');
+			var hammer = new Hammer(boxEl);
+			// hammer.on('swipe pan tap doubletap press pinch routate', function(ev) {
+			hammer.on('pan tap doubletap press pinch routate', function(ev) {
+				console.log(ev.type);
+			});
+			hammer.on('swipe', function(ev) {
+				console.log('next');
+			})
+			hammer.on('swiperight', function(ev) {
+				console.log('prev');
+			})
+		</script>
+	</body>
+</html>

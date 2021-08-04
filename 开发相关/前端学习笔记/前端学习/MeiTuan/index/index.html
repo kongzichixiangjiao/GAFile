@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 
+ * @Author: houjianan 
+ * @Date: 2020-11-23 09:17:03 
+ * @Last Modified by:   houjianan 
+ * @Last Modified time: 2020-11-23 09:17:03 
+ */ -->
+<html lang="en">
+
+<head>
+    <title>美团外卖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/generalFit.js"></script>
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="./header/header.css">
+    <link rel="stylesheet" href="./header/searchBar.css">
+    <link rel="stylesheet" href="./category/category.css">
+    <link rel="stylesheet" href="./contentList/contentList.css">
+    <link rel="stylesheet" href="./starScore/starScore.css">
+    <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+</head>
+
+<body>
+    <!-- 头部开始 -->
+    <div class="header">
+        <div class="search-bar">
+            <div class="bar-location">
+                <div class="location-icon"></div>
+                <div class="location-text">北京市</div>
+            </div>
+            <div class="search-btn">
+                <p class="place-holder">鸡翅12</p>
+            </div>
+        </div>
+
+        <img class="header-img" src="https://p0.meituan.net/bmrecruitimage/众包专送混合投放默认头图" alt="">
+    </div>
+    <!-- 头部结束 -->
+    <!-- 类目开始 -->
+    <div class="category-content clearfix"></div>
+    <!-- 类目结束 -->
+    <!-- 商家列表开始 -->
+    <div class="list-content">
+        <h4 class="list-title">
+            <span class="title-line"></span>
+            <span>附近商家</span>
+            <span class="title-line"></span>
+        </h4>
+        <div class="list-wrap"></div>
+        <div class="loading">加载中...</div>
+    </div>
+    <!-- 商家列表结束 -->
+    <!-- 底部栏开始 -->
+    <div class="bottom-bar"></div>
+    <!-- 底部栏结束 -->
+    <script src="../lib/jquery.min.js"></script>
+    <script src="./category/category.js"></script>
+    <script src="./contentList/contentList.js"></script>
+    <script src="./starScore/starScore.js"></script>
+    <script src="../common/bottomBar/bottomBar.js"></script>
+</body>
+
+</html>

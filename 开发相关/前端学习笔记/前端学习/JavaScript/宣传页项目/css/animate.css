@@ -1,0 +1,36 @@
+.screen-1__heading {
+	transition: all 1s;
+}
+
+.screen-1__heading_animate_init {
+	opacity: 0;
+	transform: translate(0, 100%);
+}
+
+.screen-1__heading_animate_done {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+
+@-webkit-keyframes bounce {
+
+	0%,
+	100% {
+		transform: scale(0);
+	}
+
+	50% {
+		transform: scale(1);
+	}
+}
+
+.screen-1__heading::after {
+	content: ' ';
+	display: block;
+	width: 40px;
+	height: 40px;
+	background-color: red;
+	margin: 0 auto;
+	-webkit-animation: bounce 2s infinite;
+}

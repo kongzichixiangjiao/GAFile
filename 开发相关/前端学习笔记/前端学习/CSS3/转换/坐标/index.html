@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>transform与坐标：transform-origin属性</title>
+		<style type="text/css">
+			div {
+				background-color: #666666;
+				width: 500px;
+				text-align: center;
+				margin: 0 auto;
+			}
+			div>img, div>p {
+				transform: rotate3d(20, 20, 0, 45deg);
+				/* transform-origin: left top; */
+				transform-origin: 25% top; /* 水平25%的位置 垂直顶部位置 */
+			}
+		</style>
+	</head>
+	<body>
+		<p>transform-origin: x, y, z</p>
+		<div>
+			<img src="../../../CSS/assets/001.png">
+			<p>123</p>
+		</div>
+	</body>
+</html>

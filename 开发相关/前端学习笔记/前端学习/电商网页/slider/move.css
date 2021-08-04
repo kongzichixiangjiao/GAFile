@@ -1,0 +1,39 @@
+.slider {
+	overflow: hidden;
+	position: relative;
+	width: 200px;
+	height: 100px;
+	border: 2px solid #ccc;
+	margin-left: 100px;
+	background-color: #008000;
+}
+.box {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 200px;
+	height: 100px;
+	background-color: red;
+}
+
+#box2 {
+	background-color: yellow;
+	left: 200px;
+}
+
+.btns {
+	width: 100px;
+}
+
+
+.box{
+	left: 0;
+	right: 0;
+}
+
+#box2 {
+	left: 100%;
+}
+#back-btn {
+	margin-left: 100px;
+}

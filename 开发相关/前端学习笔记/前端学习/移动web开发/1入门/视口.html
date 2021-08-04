@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- <meta name="viewport" content="width=375"/> -->
+		<!-- <meta name="viewport" content="width=device-width"/> -->
+		<!-- <meta name="viewport" content="height"/> -->
+		<!-- <meta name="viewport" content="initial-scale=1"/> -->
+		<!-- <meta name="viewport" content="initial-scale=0.5"/> -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> -->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+		<title>移动web开发入门</title>
+
+	</head>
+	<body>
+
+		<p style="font-size: 20px;">123</p>
+		<img src="../../CSS3/转换/矩阵/matrix.png">
+
+		<script type="text/javascript">
+			console.log(window.innerWidth);
+			console.log(document.documentElement.clientWidth);
+			console.log(document.documentElement.getBoundingClientRect().width);
+			var viwWidth = window.innerWidth |
+				document.documentElement.clientWidth |
+				document.documentElement.getBoundingClientRect().width;
+			console.log(viwWidth);
+
+			// dpr
+			console.log(window.devicePixelRatio);
+		</script>
+	</body>
+</html>

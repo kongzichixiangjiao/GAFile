@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DOM事件</title>
+		<script src="domReady.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div id="div0" onclick="alert(0)" url="http://www.baidu.com" xxx="111" yyy="222">
+			点击我
+		</div>
+
+		<div>
+			<input type="checkbox">北京
+			<input type="checkbox" checked="checked">香港
+			<input type="checkbox" checked="">纽约
+		</div>
+
+		<div>
+			<select name="city" id="city">
+				<option value="北京">北京</option>
+				<option value="香港" selected="selected">香港</option>
+				<option value="纽约">纽约</option>
+			</select>
+		</div>
+
+		<div>
+			国籍：<input id="nationality" type="text" value="中国" readonly="readonly">
+		</div>
+
+		<div>
+			<p style="text-align: center;" id="title" class="large">芙蓉楼送辛渐</p>
+			<p style="text-align: center;" id="auth">王昌龄</p>
+			<p style="text-align: center;" id="sentence"><bdo dir="RTL">寒雨连江夜入吴，</bdo></p>
+			<p style="text-align: center;" id="sentence">
+				<dbo dir="RTL">平明送客楚山孤。</dbo>
+			</p>
+			<img src="../../CSS/assets/001.png" alt="图片">
+			<input type="text" name="txt1" id="txt1" value="tab1" accesskey="a" />
+			<input type="text" name="txt2" id="txt2" value="tab2" accesskey="s" />
+		</div>
+
+		<div id="body" class="aaa bbb ccc">
+			TT
+		</div>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var div = document.querySelector("div");
+				/* getNamedItem */
+				console.log(div.xxx); // undefined
+				console.log(div.attributes.getNamedItem('xxx')); // xxx="111"
+				console.log(div.attributes.getNamedItem('xxx').nodeValue); // 111
+
+				console.log(div.nodeName); // DIV  
+
+				console.log(div.attributes.getNamedItem('nodeName')); // null
+				// console.log(div.attributes.getNamedItem('nodeName').nodeValue);
+				console.log(div.attributes.getNamedItem('id').nodeValue);
+				console.log(div.attributes['id'].nodeValue);
+
+				div.attributes.removeNamedItem('yyy');
+
+				/* setNamedItem */
+				// div.attributes.setNamedItem('data-title', 'ddd'); // Failed to execute 'setNamedItem' on 'NamedNodeMap': parameter 1 is not of type 'Attr'.
+				var attr = document.createAttribute('data-title');
+				attr.value = 'ddd';
+				div.attributes.setNamedItem(attr);
+
+				/*getAttribute*/
+				console.log(div.getAttribute('url'));
+				console.log(div.getAttribute('xxx'));
+
+				console.log(div.getAttribute('onclick'));
+				console.log(div.onclick);
+
+				/* setAttribute */
+				div.setAttribute('xxx', 'x');
+				div.setAttribute('data-event', 'click');
+				div.setAttribute('style', 'color:blue');
+				div.setAttribute('onclick', 'alert(1)');
+
+				/* removeAttribute */
+				div.removeAttribute('xxx');
+			});
+		</script>
+
+		<script type="text/javascript">
+			myReady(function() {
+				var inputs = document.querySelectorAll("input");
+				inputs[0].checked = 1;
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var city = document.getElementById('city');
+				var options = city.options;
+				options[2].selected = true;
+				city.multiple = true;
+			});
+		</script>
+		<script type="text/javascript">
+			myReady(function() {
+				var nationality = document.getElementById('nationality');
+				nationality.readOnly = false;
+			});
+		</script>
+		<script type="text/javascript">
+			var CC = {
+				getClass: function(ele) {
+					// /\s+/ 匹配一个一行的空格
+					return ele.className.replace(/\s+/, " ").split(" ");
+				},
+				hasClass: function(ele, cls) {
+					return -1 < (" " + ele.className + " ").indexOf(" " + cls + " ");
+				},
+				addClass: function(ele, cls) {
+					if (!this.hasClass(ele, cls)) {
+						ele.className += " " + cls;
+					}
+				},
+				removeClass: function(ele, cls) {
+					if (this.hasClass(ele, cls)) {
+						var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)', "gi");
+						ele.className = ele.className.replace(reg, " ");
+					}
+				},
+				toggleClass: function(ele, cls) {
+					if (this.hasClass(ele, cls)) {
+						this.removeClass(ele, cls);
+					} else {
+						this.addClass(ele, cls);
+					}
+				}
+			};
+
+			myReady(function() {
+				var divBody = document.getElementById('body');
+				console.log(divBody.className);
+				console.log(CC.getClass(divBody));
+				console.log(CC.hasClass(divBody, 'bbb'));
+				CC.addClass(divBody, 'fff');
+			});
+		</script>
+	</body>
+</html>
