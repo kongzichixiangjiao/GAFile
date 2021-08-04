@@ -1,3 +1,5 @@
+
+# GAFile
 .
 ├── Excel函数示例.xlsx
 ├── GZ
@@ -74,4 +76,6 @@
     ├── 记忆三级加工系统.png
     └── 言语反应策略与信任修复模型.png
 
-25 directories, 49 files
+
+
+
