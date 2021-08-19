@@ -14,6 +14,7 @@ while start != max_start:
 
     # print(response.text)
     soup = BeautifulSoup(response.text, 'html.parser')
+    # print(soup.prettify())
     grid_view = soup.find(class_="grid_view")
     # print(grid_view)
     class_hd = grid_view.find_all(class_="hd")

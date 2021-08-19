@@ -34,3 +34,7 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 # print(soup.find(id='link1'))
 print(soup.find(class_='story'))
 print(soup.find(class_='story').find('a').string)
+
+
+
+
